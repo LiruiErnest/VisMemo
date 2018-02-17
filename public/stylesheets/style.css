@@ -1,0 +1,63 @@
+/**－－－－－－－－－－－－－public-start－－－－－－－－－－－－**/
+
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; 
+  font-weight: normal;
+  background-color: #e6e6e6; background-size: 100% 100%; 
+}
+
+a {
+  color: #00B7FF;
+}
+
+
+/**－－－－－－－－－－－－－public-end－－－－－－－－－－－－**/
+
+/**－－－－－－－－－－－－－ordermemo application page start－－－－－－－－－－－－**/
+
+/* the contain of whole interface */
+.ordermemo .main-box{}
+
+/* box for header, greeting, and instructions */
+.ordermemo .main-box .header-box{position: absolute; top:5%; left: 0%; width: 100%; height: 20%; background-color: #CCFFFF;
+	margin-left: auto; margin-right: auto;}
+.ordermemo .main-box .header-box .game-name{text-align:center; font-weight: bold; position: relative; top:30%;}
+.ordermemo .main-box .header-box .header-instructions{text-align: center; top: 40%; padding: 0.4rem; position: relative;}
+.ordermemo .main-box .header-box .loading{height: 1.86rem; top:8rem; text-align: center; display: none; position: relative;
+background:#f0f0f0; line-height: 1.86rem}
+
+/* box for present pictures, control button, feedback img or other things in the game. */
+.ordermemo .main-box .content-box{position: absolute; top:25%; left: 0%; width: 100%; height: 50%; background-color: #CCCCFF;
+	margin-left: auto; margin-right: auto}
+
+.ordermemo .main-box .content-box .game-box{position: absolute; left: 20%; width: 60%; height: 100%; background-color: #99CC66;
+	margin-left: auto; margin-right: auto}
+
+.ordermemo .main-box .content-box .practice-button{height: 1.86rem; left: 20%; width: 60%; border-radius: 0.05rem; position: relative;
+	background:#f0f0f0; margin: 0 auto; line-height:1.86rem; text-align: center; 
+	font-size: 14px; color: #000000; cursor: pointer; }
+.ordermemo .main-box .content-box .practice-button:hover{background-color: #e6e6e6}
+
+.ordermemo .main-box .content-box .instructions{text-align: left; }
+
+/* box for show copyright, end instruction and so on.*/
+.ordermemo .main-box .footer-box{position: absolute; top:75%; left: 0%; width: 100%; height: 20%; background-color: #FFCC99;
+	margin-left: auto; margin-right: auto}
+.ordermemo .main-box .footer-box .progress-bar{height: 1.5rem;width: 100%; display: none;}  
+.ordermemo .main-box .footer-box .progress-bar .bar-label{line-height: 1.5rem;text-align: left; margin-left: 1rem;
+font-size:0.9rem;}
+.ordermemo .main-box .footer-box .progress-bar .bar{height: 1.0rem; width: 70%; top:0.25rem;left:20%;
+	background-color: #e6e6e6; position: absolute; border: 0.01rem solid #999999;}
+.ordermemo .main-box .footer-box .progress-bar .shader{height: 1.0rem; width: 30%; top:0.25rem;left:20%;
+	background-color: #666666; position: absolute; border: 0.01rem solid #999999;}
+
+
+
+
+
+
+
+
+/**－－－－－－－－－－－－－ordermemo application page end－－－－－－－－－－－－**/
+
+

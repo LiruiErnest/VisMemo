@@ -1,0 +1,1 @@
+//Define common functions of the whole system
