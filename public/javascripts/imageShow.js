@@ -19,8 +19,8 @@ function preLoadImage(imageURLobj){
 	loadedimage = 0;
 
 //==================================test 
-	var imageCount = 5;
-	//var imageCount = globalSequence[0].length;
+	//var imageCount = 5;
+	var imageCount = globalSequence[globalWorkerObj.finishLevel].length;
 
 	function imageloadpost(){
 		//control the progress bar
@@ -31,13 +31,13 @@ function preLoadImage(imageURLobj){
 			$('.shader').css({'width':'70%'});
 			//alert("all images have been loaded!");
 			//go to ready to page()
-			beforeGame();
+			readyGame();
 		}
 	}
 
 	//==================================test 
-	for(var i = 0;i < 5;i++){
-		var imageID = 'I' + globalSequence[0][i][0];
+	for(var i = 0;i < globalSequence[globalWorkerObj.finishLevel].length;i++){
+		var imageID = 'I' + globalSequence[globalWorkerObj.finishLevel][i][0];
 		images[i] = new Image()
 		images[i].src = imageURLobj[imageID];
 		images[i].onload = function(){
@@ -45,7 +45,7 @@ function preLoadImage(imageURLobj){
 		}
 		images[i].onerror = function(){
 			console.log(i);
-			console.log(i,globalSequence[0][i][0]);
+			console.log(i,globalSequence[globalWorkerObj.finishLevel][i][0]);
 			imageloadpost();
 		}
 	}
@@ -54,7 +54,7 @@ function preLoadImage(imageURLobj){
 }
 
 //before game
-function beforeGame(){
+function readyGame(){
 	$(".loading").css({'display':'none'});
 	$(".game-box").css({'display':'block'});
 	$(".before-instructions").css({'display':'block'});
@@ -81,8 +81,8 @@ function imageShow(){
 	var index = 0;
 	var showFeedThread;
 	//==================================test 
-	var imageCount = 5;
-	//var imageCount = globalSequence[0].length;
+	//var imageCount = 5;
+	var imageCount = globalSequence[globalWorkerObj.finishLevel].length;
 
 	$('.shader').css({'width':'0%'});    //reset the progress bar
 
@@ -96,7 +96,7 @@ function imageShow(){
 			//stop show images
 			clearInterval(showImageThread);	
 		}
-		var imageID = 'I' + globalSequence[0][index][0];
+		var imageID = 'I' + globalSequence[globalWorkerObj.finishLevel][index][0];
 		var src  = globalImageURLobj[imageID];
 		//console.log(index);
 		index++;
@@ -104,7 +104,7 @@ function imageShow(){
 		$(document).on("keydown",function(e){
 			if(e.keyCode == '32'){
 				//record repeat state
-				recordRepeat(index - 1);
+				recordRepeat(index - 1,globalWorkerObj.finishLevel);
 			}
 		})
 		//change image
@@ -117,21 +117,24 @@ function imageShow(){
 	}
 
 	//show feedback
-	var _showFeedback = function(){
-		
-		if(index == imageCount){
-			//update user log
-
-			//stop show feedback
-			clearInterval(showFeedThread);
-		}	
+	var _showFeedback = function(){	
 		//abandon keyboard event.
 		$(document).off("keydown");
 		//record non-repeat state
-		recordState(index - 1);
+		recordState(index - 1,globalWorkerObj.finishLevel);
 		//change to feedback image
 		$(".visImage").css({'display':'none'});
 		$(".feedbackImage").css({'display':'block'});
+		if(index == imageCount){
+			//update user log
+			var userlog = "";
+			for(var i = 0;i < globalSequence[globalWorkerObj.finishLevel].length; i++){
+				userlog = userlog + globalSequence[globalWorkerObj.finishLevel][i][0] + ',' + globalSequence[globalWorkerObj.finishLevel][i][3] + ';';
+			}
+			updateUser(globalWorkerObj.WorkerID,userlog,globalWorkerObj.finishLevel);
+			//stop show feedback
+			clearInterval(showFeedThread);
+		}	
 	}
 
 	//show add1s
@@ -147,55 +150,57 @@ function imageShow(){
 //state: 1: filler hits, 2: filler miss 3. filler false alarm 4. filler correct rejection
 //state: 5: target hits, 6: target miss 7. target false alarm 8. target correct rejection
 //record the user repeat action
-function recordRepeat(index){
+function recordRepeat(index,level){
+	
 	//if participant see this image for first time
-	if(globalSequence[0][index][1] == 0){
+	if(globalSequence[level][index][1] == 0){
 		//whether this image is a target image
-		if(globalSequence[0][index][2] == 0){
+		if(globalSequence[level][index][2] == 0){
 			//filler false alarm
-			globalSequence[0][index][3] = 3;
+			globalSequence[level][index][3] = 3;
 		}
 		else{
 			//target false alarm
-			globalSequence[0][index][3] = 7;
+			globalSequence[level][index][3] = 7;
 		}
 	}
 	else{
 		//if participant see this image for second time
-		if(globalSequence[0][index][2] == 0){
+		if(globalSequence[level][index][2] == 0){
 			//filler hits
-			globalSequence[0][index][3] = 1;
+			globalSequence[level][index][3] = 1;
 		}
 		else{
 			//target hits
-			globalSequence[0][index][3] = 5;
+			globalSequence[level][index][3] = 5;
 		}
 	}
 }
 
 //record the user other state
-function recordState(index){
+function recordState(index,level){
+	
 	//if participant see this image for first time
-	if(globalSequence[0][index][1] == 1){
+	if(globalSequence[level][index][1] == 1){
 		//whether this image is a target image
-		if(globalSequence[0][index][2] == 0){
+		if(globalSequence[level][index][2] == 0){
 			//filler correct rejection
-			globalSequence[0][index][3] = 4;
+			globalSequence[level][index][3] = 4;
 		}
 		else{
 			//target correct rejection
-			globalSequence[0][index][3] = 8;
+			globalSequence[level][index][3] = 8;
 		}
 	}
 	else{
 		//if participant see this image for second time
-		if(globalSequence[0][index][2] == 0){
+		if(globalSequence[level][index][2] == 0){
 			//filler miss
-			globalSequence[0][index][3] = 2;
+			globalSequence[level][index][3] = 2;
 		}
 		else{
 			//target miss
-			globalSequence[0][index][3] = 6;
+			globalSequence[level][index][3] = 6;
 		}
 	}
 }

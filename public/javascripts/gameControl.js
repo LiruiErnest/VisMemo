@@ -1,7 +1,8 @@
 //This script mainly define the logic of the whole game.
-var globalWorkerID;
+//var globalWorkerID;
 var globalSequence;
 var globalImageURLobj;
+var globalWorkerObj = new Object();
 
 
 $(document).ready(function() {
@@ -9,6 +10,8 @@ $(document).ready(function() {
 	var imageInfoArr = {};
 
 	$(".submitworkID-button").click(function(){
+		//====================test
+		//updateUser("5","1,2;3,4;5,8;",1);
 		checkUserExist();
 	});
 
@@ -24,11 +27,18 @@ $(document).ready(function() {
 
 
 //if user exist, back to start page
-function enterStartpage(workerID){
+function enterStartpage(data){
 	$(".header-instructions").text("Welcome back! You may try the practice again, or skip right on to the game.");
 	$(".workID-box").remove();
+	$(".demo-box").css({'display':'none'});
 	$(".game-box").css({'display':'block'});
-	globalWorkerID = workerID;
+
+	globalWorkerObj.WorkerID = data.WorkID;
+	globalWorkerObj.finishLevel = data.finishLevel;
+	globalWorkerObj.isBlocked = data.isBlocked;
+	globalWorkerObj.practiceTimes = data.practiceTimes;
+	globalWorkerObj.warningTimes = 0;
+	//globalWorkerID = data.WorkID;
 
 }
 
@@ -37,7 +47,7 @@ function enterInvestpage(workerID){
 	$(".header-instructions").text("Please fill your basic information below");
 	$(".workID-box").remove();
 	$(".demo-box").css({'display':'block'});
-	globalWorkerID = workerID;
+	//globalWorkerID = workerID;
 	$("#demoSubmit").click(function(){
 		insertUser(workerID);
 	})
@@ -76,13 +86,27 @@ function startGame(){
 	$('.progress-bar').css({ 'display': 'block' });
 
 	//check user's status, level
-	var level = 1;
+	var level = globalWorkerObj.finishLevel;
 	//obtain the image sequence
 	globalSequence = generateGamesquence();
 
 	//get url from database and begin the game
-	getImageUrl(globalSequence[0]);
+	getImageUrl(globalSequence[globalWorkerObj.finishLevel]);
 
+}
+
+
+//show Feedback page
+function levelFeedback(){
+	console.log("showfeedback");
+	//show feedback dataset
+
+	//if level < 17
+
+	//go other level
+
+	//block user
+	
 }
 
 

@@ -21,7 +21,7 @@ function checkUserExist(){
         success:function(data){
             if(data.msg.length != 0){
                 //go to main page
-                enterStartpage(workerID);
+                enterStartpage(data.msg[0]);
                 //console.log(data);
             }
             else{
@@ -39,13 +39,22 @@ function checkUserExist(){
     else{
         $('#warningText').css({'display':'block'});
     }
+}
+
+//find the user's level
+function getUserLevel(workerID){
+
+
 
 }
+
+//check the user
+
 
 //insert a worker record to database
 function insertUser(workerID){
     
-    console.log(workerID);
+    //console.log(workerID);
 
     var errorCount = 0;
     if(($('#genderSelect').val() != '') && ($('#age-text').val() != '') && ($('#country-text').val() != '')){
@@ -58,7 +67,8 @@ function insertUser(workerID){
             'code':'',
             'finishLevel':0,
             'isBlocked':0,
-            'labResult':'',
+            'labResult':{'L1':'','L2':'','L3':'','L4':'','L5':'','L6':'','L7':'','L8':'','L9':'','L10':''
+        ,'L11':'','L12':'','L13':'','L14':'','L15':'','L16':'','L17':''},
             'practiceTimes':0,
             'warningTimes':0
         }
@@ -70,7 +80,13 @@ function insertUser(workerID){
         dataType: 'JSON',
         success:function(data){
             alert('register success!');
-            console.log(data);
+            var dataObj = new Object();
+            dataObj.WorkID = workerID;
+            dataObj.finishLevel = 0;
+            dataObj.isBlocked = 0;
+            dataObj.practiceTimes = 0;
+            dataObj.warningTimes = 0;
+            enterStartpage(dataObj);
         },
         error:function(data){
             console.log(data);
@@ -85,9 +101,33 @@ function insertUser(workerID){
 }
 
 //update a worker's record
-function updateUser(workerID){
-
+function updateUser(workerID,labResult,level){
+    //{$set:{labLevel:labResult}}
+    var dataJson = {
+            'labResult': labResult,
+            'level':level,
+            'WorkID':workerID,
+        }
+    console.log(dataJson);
+    $.ajax({
+        type:"PUT",
+        data:dataJson,
+        url:'users/updateworkerlab',
+        dataType: 'JSON',
+        success:function(data){
+            //console.log(data);
+            globalWorkerObj.finishLevel = parseInt(globalWorkerObj.finishLevel) + 1;
+            //enter feedback page and ready to next level
+            levelFeedback();
+        },
+        error:function(data){
+            
+        }
+    }); 
 }
+
+
+
 
 
 

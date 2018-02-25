@@ -8,7 +8,7 @@ function generateGamesquence(){
 	var levelImageCount = 120;
 	var totalImageCount = levelCount * levelImageCount;
 	var fillerSpacingMin = 2;
-	var fillerSpacingMax = 8;
+	var fillerSpacingMax = 7;
 	var targetSpacingMin = 92;
 	var targetSpacingMax = 110;
 
