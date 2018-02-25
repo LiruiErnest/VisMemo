@@ -1,66 +1,153 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <title>VisMemo</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body class="ordermemo">
-  	<script type="text/javascript" src="/lib/d3.min.js"></script>
-	<script type="text/javascript" src="/lib/jquery-3.3.1.min.js"></script>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+</head>
+<body class="ordermemo">
+<script type="text/javascript" src="/lib/d3.min.js"></script>
+<script type="text/javascript" src="/lib/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="/lib/underscore-min.js"></script>
 
-	<script type="text/javascript" src="/javascripts/gameControl.js"></script>
-	<script type="text/javascript" src="/javascripts/internal.js"></script>
+<script type="text/javascript" src="/javascripts/gameControl.js"></script>
+<script type="text/javascript" src="/javascripts/internal.js"></script>
+<script type="text/javascript" src="/javascripts/imageSequence.js"></script>
+<script type="text/javascript" src="/javascripts/comm.js"></script>
+<script type="text/javascript" src="/javascripts/userDB.js"></script>
+<script type="text/javascript" src="/javascripts/imageDB.js"></script>
+<script type="text/javascript" src="/javascripts/imageShow.js"></script>
 
-  <div class="main-box">
+<div class="main-box">
 
     <div class="header-box">
 
-      <!-- start interface -->
+        <!-- start interface -->
 
-      <p class="game-name">Memory Game</p>
+        <p class="game-name">Memory Game</p>
 
-      <p class="header-instructions">Welcome back! You may try the practice again, or skip right on to the game.</p> 
+        <p class="header-instructions">Welcome to our memory game, please input your AMT workID below.</p>
 
-      
-    
+
     </div>
 
     <div class="content-box">
 
-      <!-- loading interface -->
+        <!-- loading interface -->
 
-      <!-- <div class="loading">loading...</div> -->
+        <div class="loading">loading...
 
-      <!-- game interface -->
+        </div>
 
-      <div class="game-box">
+        <!-- workID information collection -->
+
+        <div class="workID-box">
+            <table class="workIDTable">
+                <tr style="height: 2rem">
+                    <td style="width: 50%;text-align: right;">
+                        <label id="workIDLabel" style="font-size: 0.8rem">Your AMT WorkerID</label>
+                    </td>
+                    <td style="width: 50%">
+                        <input type="text" name="workIDtext" class="workID-input">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="text-align: center;">
+                        <button class="submitworkID-button">Submit</button>
+                    </td>
+                </tr>
+            </table>
+
+            <div class="workIDhint-box">
+                <p>Hint: You can find you workerID on your Dashboard or in the upper left corner of the new Worker
+                    website</p>
+                <img src="/images/workIDhint.png" style="width: 12rem; height: 4.5rem; ">
+                <p style="color: red;display: none;" id="warningText">Please fill in the WorkerID!</p>
+            </div>
         
-        <button class="practice-button" id="start-practice">Start Practice</button> 
+        </div>
 
-        <p class="block"></p>
+        <!-- demographic information collection for new worker -->
+        <div class="demo-box">
 
-        <button class="practice-button">Skip Practice</button> 
+          <p>We will not use your demographic information for any risk research.</p>
+          
+          <table class="demoTable">
+            <tr>
+              <td style="text-align: right;width: 40%">Gender: </td>
+              <td style="text-align: left;">
+                <select id="genderSelect" style="width: 7rem;height: 1.3rem">
+                  <option>Male</option>
+                  <option>Female</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td style="text-align: right;">Age: </td>
+              <td style="text-align: left;">
+                <input type="text" id="age-text" style="width: 7rem">
+              </td>
+            </tr>
+            <tr>
+              <td style="text-align: right;">Country: </td>
+              <td style="text-align: left;">
+                <input type="text" id="country-text" style="width: 7rem">
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2">
+                <button id="demoSubmit">Submit</button>
+              </td>
+            </tr>
+          </table>
 
-        <p class="instructions">By making judgement about these images, you are participating in a study being performed by cognitive scientist in Computer Science and Engineering Department of the Ohio State University. If you have questions about this research, please contact Dr. Chen as chen.8028@osu.edu, your performance in this research is voluntary, you may quit the experiment at any time without any adverse consequence. Your anonymity is ensured, the researchers who have request your participation will not receive any personal information from you.</p>
+          <p style="color: red;display: none; top: 10%; position: relative;" id="warningText2">Please fill in all fields!</p>
 
-      </div>    
-      
+        </div>
+
+        <!-- game interface -->
+
+        <div class="game-box">
+
+            <button class="practice-button" id="start-practice">Start Practice</button>
+
+            <p class="block"></p>
+
+            <button class="practice-button" id="skip-practice">Skip Practice</button>
+
+            <p class="instructions">By making judgement about these images, you are participating in a study being
+                performed by cognitive scientist in Computer Science and Engineering Department of the Ohio State
+                University. If you have questions about this research, please contact Dr. Chen as chen.8028@osu.edu,
+                your performance in this research is voluntary, you may quit the experiment at any time without any
+                adverse consequence. Your anonymity is ensured, the researchers who have request your participation will
+                not receive any personal information from you.</p>
+
+            <p class="before-instructions">Click go! to begin.</p>
+
+            <div class = "imageContainer">
+                <img src="" class="visImage">
+                <img src="/images/defult_feedback.png" class="feedbackImage">
+            </div> 
+
+            <button id = "begingame-button">go!</button>
+
+        </div>
+
     </div>
 
     <div class="footer-box">
-      
-      <!-- progress bar -->
-      <!-- <div class="progress-bar">
-        <label class="bar-label">Progress</label>
-        <div class="bar"></div>
-        <div class="shader"></div>
-      </div> -->
 
-      <!-- quit button -->
+        <!-- progress bar -->
+        <div class="progress-bar">
+            <label class="bar-label">Progress</label>
+            <div class="bar"></div>
+            <div class="shader"></div>
+        </div>
+
+        <!-- quit button -->
 
     </div>
 
-  </div>
+</div>
 
-  </body>
+</body>
 </html>
