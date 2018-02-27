@@ -67,8 +67,8 @@ function insertUser(workerID){
             'code':'',
             'finishLevel':0,
             'isBlocked':0,
-            'labResult':{'L1':'','L2':'','L3':'','L4':'','L5':'','L6':'','L7':'','L8':'','L9':'','L10':''
-        ,'L11':'','L12':'','L13':'','L14':'','L15':'','L16':'','L17':''},
+            'labResult':{'L0':'','L1':'','L2':'','L3':'','L4':'','L5':'','L6':'','L7':'','L8':'','L9':'','L10':''
+        ,'L11':'','L12':'','L13':'','L14':'','L15':'','L16':''},
             'practiceTimes':0,
             'warningTimes':0
         }
@@ -118,7 +118,34 @@ function updateUser(workerID,labResult,level){
             //console.log(data);
             globalWorkerObj.finishLevel = parseInt(globalWorkerObj.finishLevel) + 1;
             //enter feedback page and ready to next level
-            levelFeedback();
+            levelSummary();
+        },
+        error:function(data){
+            
+        }
+    }); 
+}
+
+
+//update a worder's practiceTimes
+function updateUserWarning(workerID,warningTimes){
+    var dataJson = {
+        'warningTimes': warningTimes,
+        'WorkID':workerID,
+    }
+    console.log(dataJson);
+    $.ajax({
+        type:"PUT",
+        data:dataJson,
+        url:'users/updateworkerwarning',
+        dataType: 'JSON',
+        success:function(data){
+            if(parseInt(globalWorkerObj.warningTimes) < 3){
+                showWarning();
+            }
+            else{
+                showBlock(1);
+            }
         },
         error:function(data){
             

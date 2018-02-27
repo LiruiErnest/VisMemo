@@ -16,6 +16,7 @@
 <script type="text/javascript" src="/javascripts/userDB.js"></script>
 <script type="text/javascript" src="/javascripts/imageDB.js"></script>
 <script type="text/javascript" src="/javascripts/imageShow.js"></script>
+<script type="text/javascript" src="/javascripts/dataAnalysis.js"></script>
 
 <div class="main-box">
 
@@ -130,6 +131,33 @@
 
             <button id = "begingame-button">go!</button>
 
+        </div>
+
+        <!-- show summary information -->
+        <div class="summary-box">
+            <p>Your score in this level is:</p>
+            <p id="hit-p">The number of visualization was recognized when shown for the second time:</p>
+            <p id="miss-p">The number of visualization was not recognized (missed) when shown for the second time</p>
+            <p id="fa-p">The number of visualization was mistakenly recognized when shown for the first time</p>
+            <p id="cr-p">The number of visualization was shown for the first time and not mistakenly recognized</p>     
+
+            <button id = "nextlevel-button">Enter next level</button>     
+        </div>
+
+        <!-- warning information -->
+        <div class="warning-box">
+            <p id="warning-text">Sorry, according to our record, you have a bad performance in previous 30 non-repeat images, which means you mistakenly recognized
+            the image show first time as a repeat image at a rate of more than 50%, in order to ensure the quality of our experiment, please take a 
+            rest and continue this level again.</p>
+            <p id="warning-note">Note: if you failed in our vigilance task for three times, you will lost your chance to attend our game.</p>
+
+            <button id = "redolevel-button">Redo the level</button>
+        </div>
+
+        <!-- block information -->
+        <div class="block-box">
+            <p id="block-text"></p>
+            <button id = "generateCode-button">Generate your code</button>
         </div>
 
     </div>

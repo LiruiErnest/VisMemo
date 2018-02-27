@@ -50,4 +50,30 @@ router.put('/updateworkerlab',function(req,res){
     });
 });
 
+//update the Warning Times of a worker
+router.put('/updateworkerwarning',function(req,res){
+    var db = req.db;
+    var collection = db.get('user');
+    
+    var WorkID = req.body.WorkID;
+    var warningTimes = req.body.warningTimes;
+    // create the object literal
+
+    var setArgs = {};
+    setArgs['warningTimes'] = warningTimes;
+
+    if(parseInt(warningTimes) == 3){
+        setArgs['isBlocked'] = 1;
+    }
+   
+    var condition = {$set:setArgs};
+
+    collection.findOneAndUpdate({'WorkID':WorkID},condition, function(err, result){
+        res.send(
+            (err === null) ? { msg: result} : { msg: err }
+        );
+    });
+});
+
+
 module.exports = router;

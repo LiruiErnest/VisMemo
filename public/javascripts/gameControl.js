@@ -3,6 +3,7 @@
 var globalSequence;
 var globalImageURLobj;
 var globalWorkerObj = new Object();
+var globalVigilance = new Object();
 
 
 $(document).ready(function() {
@@ -37,7 +38,7 @@ function enterStartpage(data){
 	globalWorkerObj.finishLevel = data.finishLevel;
 	globalWorkerObj.isBlocked = data.isBlocked;
 	globalWorkerObj.practiceTimes = data.practiceTimes;
-	globalWorkerObj.warningTimes = 0;
+	globalWorkerObj.warningTimes = data.warningTimes;
 	//globalWorkerID = data.WorkID;
 
 }
@@ -97,17 +98,93 @@ function startGame(){
 
 
 //show Feedback page
-function levelFeedback(){
-	console.log("showfeedback");
-	//show feedback dataset
+function levelSummary(){
+	console.log("levelSummary");
+	//show summary dataset
 
-	//if level < 17
-
-	//go other level
-
-	//block user
+	$(".game-box").css({ 'display': 'none' });
+	$(".summary-box").css({'display':'block'});
+	var performance = computeData(parseInt(globalWorkerObj.finishLevel) - 1);
+	console.log(performance);
+	$("#hit-p").text("The number of visualization was recognized when shown for the second time: " 
+		+ performance.hitCount + " / " + performance.totalRepeat);
+	$("#miss-p").text("The number of visualization was not recognized (missed) when shown for the second time: " 
+		+ performance.missCount + " / " + performance.totalRepeat);
+	$("#fa-p").text("The number of visualization was mistakenly recognized when shown for the first time: " 
+		+ performance.faCount + " / " + performance.totalNonRepeat);
+	$("#cr-p").text("The number of visualization was shown for the first time and not mistakenly recognized: " 
+		+ performance.crCount + " / " + performance.totalNonRepeat);
+ 
+	jumpNextLevel();
 	
 }
+
+//jump to next level
+function jumpNextLevel(){
+
+	//if level < 17
+	if(parseInt(globalWorkerObj.finishLevel) < 17){
+		//go to other level
+		$("#nextlevel-button").css({'display':'block'});
+		//unbinding first!
+		$('#nextlevel-button').unbind('click').click(function() {});
+		$("#nextlevel-button").click(function(){
+			//get url from database and begin the game
+			getImageUrl(globalSequence[globalWorkerObj.finishLevel]);	
+		});
+	}
+
+	//block user, will not use database, just use finishLevel is ok
+	if(globalWorkerObj.finishLevel == 17){
+		console.log("byebye");
+	}
+}
+
+//show warning page
+function showWarning(){
+	console.log("warning");
+	$(".game-box").css({ 'display': 'none' });
+	$(".warning-box").css({'display':'block'});
+	$("#redolevel-button").css({'display':'none'});
+	$('.feedbackImage').attr("src",'');
+	$('.visImage').attr("src",'');
+	if(parseInt(globalWorkerObj.warningTimes) < 3){
+		$("#redolevel-button").css({'display':'block'});
+		$('#redolevel-button').unbind('click').click(function() {});
+		$("#redolevel-button").click(function(){
+			//get url from database and begin the game
+			getImageUrl(globalSequence[globalWorkerObj.finishLevel]);	
+		});
+	}
+}
+
+
+//show block page
+function showBlock(blockParam){
+	console.log("block!")
+	//warning fail
+	if(blockParam == 1){
+		$(".game-box").css({ 'display': 'none' });
+		$(".block-box").css({'display':'block'});
+		$("#generateCode-button").css({'display':'block'});
+		$('.feedbackImage').attr("src",'');
+		$('.visImage').attr("src",'');
+		$("#block-text").text("sorry, you have been warning for bad performance three times, you will be blocked from our experiment, click the button below to generate your reward code, thanks for you participation!");
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
