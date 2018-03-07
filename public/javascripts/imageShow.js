@@ -58,8 +58,8 @@ function preLoadImage(imageURLobj){
 			imageloadpost();
 		}
 		images[i].onerror = function(){
-			console.log(i);
-			console.log(i,globalSequence[globalWorkerObj.finishLevel][i][0]);
+			//console.log(i);
+			//console.log(i,globalSequence[globalWorkerObj.finishLevel][i][0]);
 			imageloadpost();
 		}
 	}
