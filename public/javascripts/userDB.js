@@ -11,7 +11,7 @@ function checkUserExist(){
 
     if(workerID != ''){
 
-        workerIDJSON = {'WorkID':workerID};
+        workerIDJSON = {'WorkerID':workerID};
 
         $.ajax({
         type:"POST",
@@ -20,9 +20,15 @@ function checkUserExist(){
         dataType: 'JSON',
         success:function(data){
             if(data.msg.length != 0){
-                //go to main page
-                enterStartpage(data.msg[0]);
                 //console.log(data);
+                //if the user has been blocked
+                if(parseInt(data.msg[0].isBlocked) == 1){
+                    showBlock(2);
+                }
+                else{
+                    //go to main page
+                    enterStartpage(data.msg[0]);
+                }            
             }
             else{
                 //go to information collection page
@@ -41,14 +47,6 @@ function checkUserExist(){
     }
 }
 
-//find the user's level
-function getUserLevel(workerID){
-
-
-
-}
-
-//check the user
 
 
 //insert a worker record to database
@@ -63,10 +61,12 @@ function insertUser(workerID){
             'Age': $('#age-text').val(),
             'Country': $('#country-text').val(),
             'Gender': $('#genderSelect').val(),
-            'WorkID':workerID,
-            'code':'',
+            'WorkerID':workerID,
+            'code':{'L0':'','L1':'','L2':'','L3':'','L4':'','L5':'','L6':'','L7':'','L8':'','L9':'','L10':''
+        ,'L11':'','L12':'','L13':'','L14':'','L15':'','L16':''},
             'finishLevel':0,
             'isBlocked':0,
+            'passPractice':0,
             'labResult':{'L0':'','L1':'','L2':'','L3':'','L4':'','L5':'','L6':'','L7':'','L8':'','L9':'','L10':''
         ,'L11':'','L12':'','L13':'','L14':'','L15':'','L16':''},
             'practiceTimes':0,
@@ -81,11 +81,12 @@ function insertUser(workerID){
         success:function(data){
             alert('register success!');
             var dataObj = new Object();
-            dataObj.WorkID = workerID;
+            dataObj.WorkerID = workerID;
             dataObj.finishLevel = 0;
             dataObj.isBlocked = 0;
             dataObj.practiceTimes = 0;
             dataObj.warningTimes = 0;
+            dataObj.passPractice = 0;
             enterStartpage(dataObj);
         },
         error:function(data){
@@ -106,16 +107,18 @@ function updateUser(workerID,labResult,level){
     var dataJson = {
             'labResult': labResult,
             'level':level,
-            'WorkID':workerID,
+            'WorkerID':workerID,
         }
-    console.log(dataJson);
+    //console.log(dataJson);
     $.ajax({
         type:"PUT",
         data:dataJson,
         url:'users/updateworkerlab',
         dataType: 'JSON',
         success:function(data){
-            //console.log(data);
+            console.log(data);
+            var codelevel = "code[L" + globalWorkerObj.finishLevel + "]";
+            globalWorkerObj.code = data.msg[codelevel];
             globalWorkerObj.finishLevel = parseInt(globalWorkerObj.finishLevel) + 1;
             //enter feedback page and ready to next level
             levelSummary();
@@ -126,12 +129,49 @@ function updateUser(workerID,labResult,level){
     }); 
 }
 
+//update a worker's practiceStatus
+function updateUserPractice(workerID,practiceTimes,passPractice){
+    var dataJson = {
+        'WorkerID':workerID,
+        'practiceTimes':practiceTimes,
+        'passPractice':passPractice
+    }
+    console.log(dataJson);
+    $.ajax({
+        type:"PUT",
+        data:dataJson,
+        url:'users/updateworkerpractice',
+        dataType: 'JSON',
+        success:function(data){
+            console.log(data);
+            if(parseInt(globalWorkerObj.passPractice) == 1){
+                //pass
+                showPractice(1);
+            }
+            else{
+                if(parseInt(globalWorkerObj.practiceTimes) < 3){
+                    //show practice fail and let use do again
+                    showPractice(2);
+                }
+                else{
+                    //block user
+                    showBlock(3);
+                }
+            }
+            
+        },
+        error:function(data){
+            
+        }
+    }); 
+}
 
-//update a worder's practiceTimes
+
+//update a worker's warningTimes
 function updateUserWarning(workerID,warningTimes){
     var dataJson = {
         'warningTimes': warningTimes,
-        'WorkID':workerID,
+        'WorkerID':workerID,
     }
     console.log(dataJson);
     $.ajax({

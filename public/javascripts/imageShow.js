@@ -18,9 +18,15 @@ function preLoadImage(imageURLobj){
 	var images = new Array();
 	loadedimage = 0;
 
-//==================================test 
-	var imageCount = 10;
-	//var imageCount = globalSequence[globalWorkerObj.finishLevel].length;
+	//=============check game mode=============
+	var imageCount;
+	if(globalWorkerObj.isPracticeMode == 1){
+		imageCount = 10;
+	}
+	else{
+		//imageCount = 10;
+		imageCount = globalSequence[globalWorkerObj.finishLevel].length;
+	}
 
 	function imageloadpost(){
 		//control the progress bar
@@ -28,6 +34,7 @@ function preLoadImage(imageURLobj){
 		$(".block-box").css({'display':'none'});
 		$(".warning-box").css({'display':'none'});
 		$(".summary-box").css({'display':'none'});
+		$(".practice-box").css({'display':'none'});
 		$(".game-box").css({'display':'none'});
 		$(".loading").css({'display':'block'});
 		$('.shader').css({'width':proportion + "%"});
@@ -43,9 +50,7 @@ function preLoadImage(imageURLobj){
 		}
 	}
 
-	//==================================test 
-	//for(var i = 0;i < globalSequence[globalWorkerObj.finishLevel].length;i++){
-	for(var i = 0;i < 10;i++){
+	for(var i = 0;i < imageCount;i++){
 		var imageID = 'I' + globalSequence[globalWorkerObj.finishLevel][i][0];
 		images[i] = new Image()
 		images[i].src = imageURLobj[imageID];
@@ -65,13 +70,22 @@ function preLoadImage(imageURLobj){
 //before game
 function readyGame(){
 
+
+
 	$(".loading").css({'display':'none'});
 	$(".game-box").css({'display':'block'});
 	$(".imageContainer").css({'display':'none'});
 	$(".before-instructions").css({'display':'block'});
+	//before instruction set up
+	if(globalWorkerObj.isPracticeMode == 1){
+		$(".before-instructions").text("Welcome to practice module, you will see 30 images in this game, where some images may repeat for 2 times, please press space key when you see the repeat image.");
+	}
+	else{
+		//real game instruction
+		$(".before-instructions").text("Click go! to begin.");
+	}
 	$("#begingame-button").css({ 'display': 'block' });
 	//register click event to show image
-	//be careful, don't bind event for two times!
 	$('#begingame-button').unbind('click').click(function() {});
 	$("#begingame-button").click(function(){
 		imageShow();
@@ -97,21 +111,20 @@ function imageShow(){
 	var showFeedThread;  //the showFeed time function
 	var isKeydown = 0;  //if user press the key, then change to 1;
 	var isWarning = 0;  //if user failed in vigilance task, then change to 1;
-	//==================================test 
-	var imageCount = 10;
-	//var imageCount = globalSequence[globalWorkerObj.finishLevel].length;
 
-	//vigilance param set-up
-	//globalVigilance.vigilanceIndex = new Array();
-	//globalVigilance.hitCount = 0;
-	
-	//globalVigilance.faCount = 0;
+	//=============check game mode=============
+	var imageCount;
+	if(globalWorkerObj.isPracticeMode == 1){
+		imageCount = 10;
+	}
+	else{
+		//imageCount = 10;
+		imageCount = globalSequence[globalWorkerObj.finishLevel].length;
+	}
 
 	//show images
 	var _showImage = function() {
 
-		
-		
 		if(index == imageCount - 1){
 			//stop show images
 			clearInterval(showImageThread);	
@@ -126,14 +139,17 @@ function imageShow(){
 			if(e.keyCode == '32'){
 				//record repeat state
 				isKeydown = 1;
+				//we only use warning when we take real game
 				isWarning = recordRepeat(index - 1,globalWorkerObj.finishLevel);
-				if(isWarning == 1){
-					clearInterval(showImageThread);
-					clearInterval(showFeedThread);
-					//update practice times
-					globalWorkerObj.warningTimes = parseInt(globalWorkerObj.warningTimes) + 1;
-					updateUserWarning(globalWorkerObj.WorkerID,globalWorkerObj.warningTimes);
-				}
+				if(globalWorkerObj.isPracticeMode == 0){
+					if(isWarning == 1){
+						clearInterval(showImageThread);
+						clearInterval(showFeedThread);
+						//update practice times
+						globalWorkerObj.warningTimes = parseInt(globalWorkerObj.warningTimes) + 1;
+						updateUserWarning(globalWorkerObj.WorkerID,globalWorkerObj.warningTimes);
+					}
+				}				
 			}
 		})
 		//change image
@@ -152,26 +168,54 @@ function imageShow(){
 		$(document).off("keydown");
 		//record non-repeat state
 		if(isKeydown == 0){
+			//Only use warning when we take real game
 			isWarning = recordState(index - 1,globalWorkerObj.finishLevel);
-			if(isWarning == 1){
-				clearInterval(showFeedThread);
-				clearInterval(showImageThread);
-				//update practice times
-				globalWorkerObj.warningTimes = parseInt(globalWorkerObj.warningTimes) + 1;
-				updateUserWarning(globalWorkerObj.WorkerID,globalWorkerObj.warningTimes);
-			}
+			if(globalWorkerObj.isPracticeMode == 0){				
+				if(isWarning == 1){
+					clearInterval(showFeedThread);
+					clearInterval(showImageThread);
+					//update practice times
+					globalWorkerObj.warningTimes = parseInt(globalWorkerObj.warningTimes) + 1;
+					updateUserWarning(globalWorkerObj.WorkerID,globalWorkerObj.warningTimes);
+				}
+			}		
 		}	
 		//change to feedback image
 		$(".visImage").css({'display':'none'});
 		$(".feedbackImage").css({'display':'block'});
 		if(index == imageCount){
 			$('.feedbackImage').attr("src",'');  //delete the visImage
-			//update user log
-			var userlog = "";
-			for(var i = 0;i < globalSequence[globalWorkerObj.finishLevel].length; i++){
-				userlog = userlog + globalSequence[globalWorkerObj.finishLevel][i][0] + ',' + globalSequence[globalWorkerObj.finishLevel][i][3] + ';';
+			//if real game
+			if(globalWorkerObj.isPracticeMode == 0){
+				//update user log
+				var userlog = "";
+				for(var i = 0;i < globalSequence[globalWorkerObj.finishLevel].length; i++){
+					userlog = userlog + globalSequence[globalWorkerObj.finishLevel][i][0] + ',' + globalSequence[globalWorkerObj.finishLevel][i][3] + ';';
+				}
+				updateUser(globalWorkerObj.WorkerID,userlog,globalWorkerObj.finishLevel);
 			}
-			updateUser(globalWorkerObj.WorkerID,userlog,globalWorkerObj.finishLevel);
+			else{
+				if(parseInt(globalWorkerObj.passPractice) == 1){
+					var performance = computeData(globalWorkerObj.finishLevel,10);
+					if(performance.hitRate > 0.5 && performance.faRate < 0.3){
+						showPractice(1);
+					}
+					else{
+						showPractice(3);					
+					}
+				}
+				else{
+					var performance = computeData(globalWorkerObj.finishLevel,10);
+					if(performance.hitRate > 0.5 && performance.faRate < 0.3){
+						console.log("pass");
+						globalWorkerObj.passPractice = 1;
+					}
+					else{
+						globalWorkerObj.practiceTimes = parseInt(globalWorkerObj.practiceTimes) + 1;					
+					}
+					updateUserPractice(globalWorkerObj.WorkerID,globalWorkerObj.practiceTimes,globalWorkerObj.passPractice);
+				}												
+			}			
 			//stop show feedback
 			clearInterval(showFeedThread);
 		}	
@@ -297,6 +341,9 @@ function checkWarning(cursor,level){
 	}
 	return isWarning;
 }
+
+
+
 
 
 

@@ -1,5 +1,5 @@
 //used to take data analysis
-function computeData(level){
+function computeData(level,imageCount){
 	
 	var performance = new Object();
 	var hitCount = 0; //hit count
@@ -9,7 +9,7 @@ function computeData(level){
 	var totalRepeat = 0;
 	var totalNonRepeat = 0;
 	//count performance data.
-	for(var i = 0; i < globalSequence[0].length; i++){
+	for(var i = 0; i < imageCount; i++){
 		if(globalSequence[level][i][1] == 0){
 			totalNonRepeat++;
 			if(globalSequence[level][i][3] == 4 || globalSequence[level][i][3] == 8){
@@ -36,6 +36,10 @@ function computeData(level){
 	performance.crCount = crCount;
 	performance.totalRepeat = totalRepeat;
 	performance.totalNonRepeat = totalNonRepeat;
+	performance.hitRate = hitCount/(hitCount+missCount);
+	performance.faRate = faCount/(faCount+crCount);
 
 	return performance;
 }
+
+

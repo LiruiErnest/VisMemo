@@ -1,12 +1,13 @@
 var express = require('express');
 var router = express.Router();
-
+var crypto = require('crypto');
 
 
 /*search user by workid*/
 router.post('/checkworker', function(req, res) {
     var db = req.db;
     var collection = db.get('user');
+
     collection.find(req.body, function(err, result){
         res.send(
             (err === null) ? { msg: result } : { msg: err }
@@ -31,19 +32,27 @@ router.put('/updateworkerlab',function(req,res){
     var db = req.db;
     var collection = db.get('user');
     
-    var WorkID = req.body.WorkID;
+    var WorkerID = req.body.WorkerID;
     var level = req.body.level;
     var nextlevel = parseInt(level) + 1;
     var labLevel = "labResult"  + '[L' + level + ']';
     var labResult = req.body.labResult;
 
+    // create the code
+    var codeHash = crypto.createHash('md5');
+    codeHash.update(WorkerID+level);
+    var code = codeHash.digest('hex');
+    var codeLevel = "code" + '[L' + level + ']';
+
     // create the object literal
     var setArgs = {};
     setArgs[labLevel] = labResult;
+    setArgs[codeLevel] = code;
     setArgs['finishLevel'] = nextlevel;
+
     var condition = {$set:setArgs};
 
-    collection.findOneAndUpdate({'WorkID':WorkID},condition, function(err, result){
+    collection.findOneAndUpdate({'WorkerID':WorkerID},condition, function(err, result){
         res.send(
             (err === null) ? { msg: result} : { msg: err }
         );
@@ -55,7 +64,7 @@ router.put('/updateworkerwarning',function(req,res){
     var db = req.db;
     var collection = db.get('user');
     
-    var WorkID = req.body.WorkID;
+    var WorkerID = req.body.WorkerID;
     var warningTimes = req.body.warningTimes;
     // create the object literal
 
@@ -68,12 +77,41 @@ router.put('/updateworkerwarning',function(req,res){
    
     var condition = {$set:setArgs};
 
-    collection.findOneAndUpdate({'WorkID':WorkID},condition, function(err, result){
+    collection.findOneAndUpdate({'WorkerID':WorkerID},condition, function(err, result){
         res.send(
             (err === null) ? { msg: result} : { msg: err }
         );
     });
 });
 
+//update the Practice Times of a worker
+router.put('/updateworkerpractice',function(req,res){
+    var db = req.db;
+    var collection = db.get('user');
+    
+    var WorkerID = req.body.WorkerID;
+    var practiceTimes = req.body.practiceTimes;
+    var passPractice = req.body.passPractice;
+    // create the object literal
+
+    var setArgs = {};
+    setArgs['practiceTimes'] = practiceTimes;
+
+    if(parseInt(practiceTimes) == 3){
+        setArgs['isBlocked'] = 1;
+    }
+
+    if(parseInt(passPractice) == 1){
+        setArgs['passPractice'] = 1;
+    }
+   
+    var condition = {$set:setArgs};
+
+    collection.findOneAndUpdate({'WorkerID':WorkerID},condition, function(err, result){
+        res.send(
+            (err === null) ? { msg: result} : { msg: err }
+        );
+    });
+});
 
 module.exports = router;

@@ -28,7 +28,6 @@
 
         <p class="header-instructions">Welcome to our memory game, please input your AMT workID below.</p>
 
-
     </div>
 
     <div class="content-box">
@@ -122,6 +121,8 @@
                 adverse consequence. Your anonymity is ensured, the researchers who have request your participation will
                 not receive any personal information from you.</p>
 
+            <p style="color: red;display: none; text-align: center;" id="practiceNotification">Please finish the practice first!</p>
+
             <p class="before-instructions">Click go! to begin.</p>
 
             <div class = "imageContainer">
@@ -135,11 +136,15 @@
 
         <!-- show summary information -->
         <div class="summary-box">
-            <p>Your score in this level is:</p>
+            <p style="font-weight: bold;">Your score in this level is:</p>
             <p id="hit-p">The number of visualization was recognized when shown for the second time:</p>
             <p id="miss-p">The number of visualization was not recognized (missed) when shown for the second time</p>
             <p id="fa-p">The number of visualization was mistakenly recognized when shown for the first time</p>
-            <p id="cr-p">The number of visualization was shown for the first time and not mistakenly recognized</p>     
+            <p id="cr-p">The number of visualization was shown for the first time and not mistakenly recognized</p> 
+            <p id="levelcode-p">
+                <label>Your reward code is: </label>
+                <label id=levelcode></label>
+            </p>    
 
             <button id = "nextlevel-button">Enter next level</button>     
         </div>
@@ -154,11 +159,17 @@
             <button id = "redolevel-button">Redo the level</button>
         </div>
 
-        <!-- block information -->
-        <div class="block-box">
-            <p id="block-text"></p>
-            <button id = "generateCode-button">Generate your code</button>
+        <!-- practice information -->
+        <div class="practice-box">
+            <p id="practice-text">
+                You almostly pass our practice! Please click the button and try one more time, you can do it!
+            </p>
+
+            <button id = "repractice-button">Practice again</button>
+            <button id = "goback-button">Go game</button>
+
         </div>
+
 
     </div>
 
@@ -174,6 +185,8 @@
         <!-- quit button -->
 
     </div>
+
+
 
 </div>
 
