@@ -32,7 +32,8 @@ function checkUserExist(){
             }
             else{
                 //go to information collection page
-                enterInvestpage(workerID);
+                enterConsentPage(workerID);
+                //enterInvestpage(workerID);
                 //console.log(data);
             }
         },

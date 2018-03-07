@@ -59,10 +59,26 @@ function enterStartpage(data){
 	});
 }
 
+function enterConsentPage(workerID){
+	$(".header-instructions").text("Please read the consent form below carefully and click the agree button.");
+	$(".workID-box").remove();
+	$(".consent-box").css({'display':'block'});
+	$('#consentAgree-button').unbind('click').click(function() {});
+		$("#consentAgree-button").click(function(){
+			if(!$('#consent-checkbox').prop('checked')){
+				alert("Please check the box firstly!");
+			}
+			else{
+				enterInvestpage(workerID);
+			}
+	});
+}
+
 //if user doesn't exist, go to a new page
 function enterInvestpage(workerID){
 	$(".header-instructions").text("Please fill your basic information below");
 	$(".workID-box").remove();
+	$(".consent-box").remove();
 	$(".demo-box").css({'display':'block'});
 	//globalWorkerID = workerID;
 	$("#demoSubmit").click(function(){
