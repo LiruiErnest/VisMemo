@@ -23,7 +23,19 @@ function checkUserExist(){
                 //console.log(data);
                 //if the user has been blocked
                 if(parseInt(data.msg[0].isBlocked) == 1){
-                    showBlock(2);
+                    //if finished all levels:
+                    if(parseInt(data.msg[0].finishLevel) == 17){
+                        showBlock(4);
+                    }
+                    else if(parseInt(data.msg[0].warningTimes) == 3){
+                        showBlock(1);
+                    }
+                    else if(parseInt(data.msg[0].practiceTimes) == 3){
+                        showBlock(3);
+                    }
+                    else{
+                        showBlock(2);
+                    }                  
                 }
                 else{
                     //go to main page
@@ -56,12 +68,13 @@ function insertUser(workerID){
     //console.log(workerID);
 
     var errorCount = 0;
-    if(($('#genderSelect').val() != '') && ($('#age-text').val() != '') && ($('#country-text').val() != '')){
+    if(($('#genderSelect').val() != '') && $('input[name=visualRate]').is(':checked') != false){
 
         var newWorker = {
             'Age': $('#age-text').val(),
-            'Country': $('#country-text').val(),
+            'Country': $('#country2').val(),
             'Gender': $('#genderSelect').val(),
+            'proficiency':$('input[name=visualRate]:checked').val(),
             'WorkerID':workerID,
             'code':{'L0':'','L1':'','L2':'','L3':'','L4':'','L5':'','L6':'','L7':'','L8':'','L9':'','L10':''
         ,'L11':'','L12':'','L13':'','L14':'','L15':'','L16':''},
@@ -91,14 +104,18 @@ function insertUser(workerID){
             enterStartpage(dataObj);
         },
         error:function(data){
-            console.log(data);
+            //console.log(data);
         }
         });
-        $('#warningText2').css({'display':'none'});
+        $('#demowarning').css({'display':'none'});
 
     }
+    else if(parseInt($('#age-text').val()) < 18){
+        $('#demowarning').text("You must older than 18 years old to participate our experiment!");
+        $('#demowarning').css({'display':'block'});
+    }
     else{
-        $('#warningText2').css({'display':'block'});
+        $('#demowarning').css({'display':'block'});
     }
 }
 
@@ -117,7 +134,7 @@ function updateUser(workerID,labResult,level){
         url:'users/updateworkerlab',
         dataType: 'JSON',
         success:function(data){
-            console.log(data);
+            //console.log(data);
             var codelevel = "code[L" + globalWorkerObj.finishLevel + "]";
             globalWorkerObj.code = data.msg[codelevel];
             globalWorkerObj.finishLevel = parseInt(globalWorkerObj.finishLevel) + 1;
@@ -137,14 +154,14 @@ function updateUserPractice(workerID,practiceTimes,passPractice){
         'practiceTimes':practiceTimes,
         'passPractice':passPractice
     }
-    console.log(dataJson);
+    //console.log(dataJson);
     $.ajax({
         type:"PUT",
         data:dataJson,
         url:'users/updateworkerpractice',
         dataType: 'JSON',
         success:function(data){
-            console.log(data);
+            //console.log(data);
             if(parseInt(globalWorkerObj.passPractice) == 1){
                 //pass
                 showPractice(1);
@@ -174,7 +191,7 @@ function updateUserWarning(workerID,warningTimes){
         'warningTimes': warningTimes,
         'WorkerID':workerID,
     }
-    console.log(dataJson);
+    //console.log(dataJson);
     $.ajax({
         type:"PUT",
         data:dataJson,

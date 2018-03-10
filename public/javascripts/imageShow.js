@@ -21,11 +21,15 @@ function preLoadImage(imageURLobj){
 	//=============check game mode=============
 	var imageCount;
 	if(globalWorkerObj.isPracticeMode == 1){
-		imageCount = 10;
+		$('#rightNowLevel').css({'display':'none'});
+		imageCount = 30;
 	}
 	else{
-		//imageCount = 10;
-		imageCount = globalSequence[globalWorkerObj.finishLevel].length;
+		var levelnow = parseInt(globalWorkerObj.finishLevel) + 1;
+		$('#rightNowLevel').css({'display':'block'});
+		$('#rightNowLevel').text("Level: "+levelnow + "/17");
+		imageCount = 120;
+		//imageCount = globalSequence[globalWorkerObj.finishLevel].length;
 	}
 
 	function imageloadpost(){
@@ -70,19 +74,26 @@ function preLoadImage(imageURLobj){
 //before game
 function readyGame(){
 
-
-
 	$(".loading").css({'display':'none'});
 	$(".game-box").css({'display':'block'});
 	$(".imageContainer").css({'display':'none'});
-	$(".before-instructions").css({'display':'block'});
+	
 	//before instruction set up
 	if(globalWorkerObj.isPracticeMode == 1){
-		$(".before-instructions").text("Welcome to practice module, you will see 30 images in this game, where some images may repeat for 2 times, please press space key when you see the repeat image.");
+		$(".realgame-instructions").css({'display':'none'});
+		$(".practice-instructions").css({'display':'block'});
+		$(".icon-box").css({'display':'none'});
+		$('#begingame-button').css({'top':'40%'})
 	}
 	else{
 		//real game instruction
-		$(".before-instructions").text("Click go! to begin.");
+		$(".realgame-instructions").css({'display':'block'});
+		var rightnowLevel = parseInt(globalWorkerObj.finishLevel)+1;
+		$("#rightNowLevel2").text("(Level "+rightnowLevel+")");
+		$(".icon-box").css({'display':'block'});
+		$(".practice-instructions").css({'display':'none'});
+		$('#begingame-button').css({'top':'15%'})
+		
 	}
 	$("#begingame-button").css({ 'display': 'block' });
 	//register click event to show image
@@ -99,7 +110,9 @@ function imageShow(){
 	//vis107
 	//vis881  //extreme image test picture
 
-	$(".before-instructions").css({'display':'none'});
+	$(".realgame-instructions").css({'display':'none'});
+	$(".practice-instructions").css({'display':'none'});
+	$(".icon-box").css({'display':'none'});
 	$("#begingame-button").css({ 'display': 'none' });
 	$(".imageContainer").css({'display':'block'});
 	$('.shader').css({'width':'0%'});    //reset the progress bar
@@ -115,11 +128,11 @@ function imageShow(){
 	//=============check game mode=============
 	var imageCount;
 	if(globalWorkerObj.isPracticeMode == 1){
-		imageCount = 10;
+		imageCount = 30;
 	}
 	else{
-		//imageCount = 10;
-		imageCount = globalSequence[globalWorkerObj.finishLevel].length;
+		imageCount = 120;		
+		//imageCount = globalSequence[globalWorkerObj.finishLevel].length;
 	}
 
 	//show images
@@ -196,18 +209,18 @@ function imageShow(){
 			}
 			else{
 				if(parseInt(globalWorkerObj.passPractice) == 1){
-					var performance = computeData(globalWorkerObj.finishLevel,10);
+					var performance = computeData(globalWorkerObj.finishLevel,imageCount);
 					if(performance.hitRate > 0.5 && performance.faRate < 0.3){
 						showPractice(1);
 					}
 					else{
-						showPractice(3);					
+						showPractice(2);					
 					}
 				}
 				else{
-					var performance = computeData(globalWorkerObj.finishLevel,10);
+					var performance = computeData(globalWorkerObj.finishLevel,imageCount);
 					if(performance.hitRate > 0.5 && performance.faRate < 0.3){
-						console.log("pass");
+						//console.log("pass");
 						globalWorkerObj.passPractice = 1;
 					}
 					else{
@@ -252,7 +265,7 @@ function recordRepeat(index,level){
 		}
 		//check vigilance
 		globalVigilance.cursor++;
-		if(globalVigilance.cursor >= 5){
+		if(globalVigilance.cursor >= 30){
 			isWarning = checkWarning(globalVigilance.cursor,globalWorkerObj.finishLevel);
 		}
 	}
@@ -290,7 +303,7 @@ function recordState(index,level){
 		}
 		//check vigilance
 		globalVigilance.cursor++;
-		if(globalVigilance.cursor >= 5){
+		if(globalVigilance.cursor >= 30){
 			isWarning = checkWarning(globalVigilance.cursor,globalWorkerObj.finishLevel);
 		}
 	}
@@ -327,7 +340,7 @@ function checkWarning(cursor,level){
 
 	var isWarning = 0;
 
-	var start = cursor - 5;
+	var start = cursor - 30;
 	var faCount = 0;
 	for(var i = start; i < cursor; i++){
 		var imageID = globalVigilance.nonRepeatIndex[i];
@@ -335,7 +348,7 @@ function checkWarning(cursor,level){
 			faCount++;
 		}
 	}
-	if((faCount / 5).toFixed(2) > 0.5){
+	if((faCount / 30).toFixed(2) > 0.5){
 		//showWarning();
 		isWarning = 1;
 	}

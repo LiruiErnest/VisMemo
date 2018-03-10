@@ -50,6 +50,10 @@ router.put('/updateworkerlab',function(req,res){
     setArgs[codeLevel] = code;
     setArgs['finishLevel'] = nextlevel;
 
+    if(parseInt(nextlevel) == 17){
+        setArgs['isBlocked'] = 1;
+    }
+
     var condition = {$set:setArgs};
 
     collection.findOneAndUpdate({'WorkerID':WorkerID},condition, function(err, result){

@@ -23,11 +23,13 @@ $(document).ready(function() {
 
 //if user exist, back to start page
 function enterStartpage(data){
-	$(".header-instructions").text("Welcome back! You may try the practice again, or skip right on to the game.");
+	
 	$(".workID-box").remove();
 	$(".demo-box").css({'display':'none'});
 	$(".practice-box").css({'display':'none'});
 	$(".visImage").css({'display':'none'});
+
+	$(".header-instructions").text("Instructions");
 	$(".game-box").css({'display':'block'});
 	$(".practice-button").css({ 'display': 'block'});
 	$(".block").css({ 'display': 'block'});
@@ -42,46 +44,56 @@ function enterStartpage(data){
 	globalWorkerObj.passPractice = data.passPractice;
 
 	//register the click event
+	if(parseInt(globalWorkerObj.passPractice) == 1){
+		$(".game-instructions").text("Welcome back! In order to continue your experiment, please finish the practice test firstly!");
+	}
+
 	$('#start-practice').unbind('click').click(function() {});
 	$("#start-practice").click(function(){
 		globalWorkerObj.isPracticeMode = 1;
 		startGame();
 	});
-	$('#skip-practice').unbind('click').click(function() {});
-	$("#skip-practice").click(function(){
-		if(parseInt(globalWorkerObj.passPractice) == 0){		
-			$('#practiceNotification').css({'display':'block'});
-		}
-		else{
-			globalWorkerObj.isPracticeMode = 0;
-			startGame();
-		}		
-	});
+	// $('#skip-practice').unbind('click').click(function() {});
+	// $("#skip-practice").click(function(){
+	// 	if(parseInt(globalWorkerObj.passPractice) == 0){		
+	// 		$('#practiceNotification').css({'display':'block'});
+	// 	}
+	// 	else{
+	// 		globalWorkerObj.isPracticeMode = 0;
+	// 		startGame();
+	// 	}		
+	// });
 }
 
 function enterConsentPage(workerID){
-	$(".header-instructions").text("Please read the consent form below carefully and click the agree button.");
 	$(".workID-box").remove();
 	$(".consent-box").css({'display':'block'});
 	$('#consentAgree-button').unbind('click').click(function() {});
-		$("#consentAgree-button").click(function(){
-			if(!$('#consent-checkbox').prop('checked')){
-				alert("Please check the box firstly!");
-			}
-			else{
-				enterInvestpage(workerID);
-			}
+	$("#consentAgree-button").click(function(){			
+		enterInvestpage(workerID);
+	});
+	$('#consentDecline-button').unbind('click').click(function() {});
+	$("#consentDecline-button").click(function(){
+		$('#consentAgree-button').css({'display':'none'});
+		$('#consentDecline-button').css({'display':'none'});
+		$(".consent-form-box").css({'display':'none'});
+		$('.consent-instructions').css({'top':'45%'})
+		$('.consent-instructions').text("Thank you for your attention to this matter, you can participate to our game in the future.")
 	});
 }
 
 //if user doesn't exist, go to a new page
 function enterInvestpage(workerID){
-	$(".header-instructions").text("Please fill your basic information below");
+    populateCountries("country2");
 	$(".workID-box").remove();
 	$(".consent-box").remove();
 	$(".demo-box").css({'display':'block'});
-	//globalWorkerID = workerID;
+	$('#demoSubmit').unbind('click').click(function() {});
 	$("#demoSubmit").click(function(){
+		insertUser(workerID);
+	})
+	$('#demoSkip').unbind('click').click(function() {});
+	$("#demoSkip").click(function(){
 		insertUser(workerID);
 	})
 }
@@ -96,7 +108,7 @@ function startPractice(){
 
 	$(".loading").css({'display':'block'});
 	$(".game-name").css({'display':'none'});
-	$('.header-instructions').text("Press the 'Space' key any time you see image you see before");
+	$('.header-instructions').text("Press the 'Space' key any time you see image you saw before");
 	$('.progress-bar').css({ 'display': 'block' });
 	
 }
@@ -105,6 +117,7 @@ function startPractice(){
 function startGame(){
 	//load interface
 	$(".game-box").css({ 'display': 'none' });
+	$(".game-instructions").css({ 'display': 'none' });
 	$(".practice-button").css({ 'display': 'none' });
 	$(".block").css({ 'display': 'none' });
 	$(".instructions").css({ 'display': 'none' });
@@ -113,7 +126,7 @@ function startGame(){
 
 	$(".loading").css({'display':'block'});
 	$(".game-name").css({'display':'none'});
-	$('.header-instructions').text("Press the 'Space' key any time you see image you see before");
+	$('.header-instructions').text("Press the 'Space' key any time you see image you saw before");
 	$('.progress-bar').css({ 'display': 'block' });
 
 	//check user's status, level
@@ -144,6 +157,8 @@ function levelSummary(){
 	$("#cr-p").text("The number of visualization was shown for the first time and not mistakenly recognized: " 
 		+ performance.crCount + " / " + performance.totalNonRepeat);
  	$("#levelcode").text(globalWorkerObj.code);
+
+ 	$("#summary-p").text("Gongratulations! You have finished all levels of our game, your scores in the level 17 are as follows.")
 	jumpNextLevel();
 	
 }
@@ -165,7 +180,8 @@ function jumpNextLevel(){
 
 	//block user, will not use database, just use finishLevel is ok
 	if(globalWorkerObj.finishLevel == 17){
-		console.log("byebye");
+		//showBlock(4);
+		//console.log("byebye");
 	}
 }
 
@@ -200,7 +216,7 @@ function showPractice(practiceParam){
 
 	if(practiceParam == 1){
 		//if user pass the practice test
-		$('#practice-text').text("Congratulations! you passed the practice test, click the button to go back main page");
+		$('#practice-text').text("Congratulations! you passed the practice test, click the button to begin real game!");
 		$("#repractice-button").text("Go game");
 		$("#repractice-button").css({'display':'block'});
 		$('#repractice-button').unbind('click').click(function() {});
@@ -222,7 +238,7 @@ function showPractice(practiceParam){
 	}
 	else{
 		//if user passed the practice before and failed
-		$('#practice-text').text("Oops! you almostly pass our test, would you like to redo the practice or begin the game?");
+		$('#practice-text').text("Sorry, you just failed in our practice test, please redo the practice test by clicking the 'redo' practice button.");
 		$("#repractice-button").text("Practice again");
 		$("#repractice-button").css({'display':'block'});
 		$("#goback-button").css({'display':'block'});
@@ -246,29 +262,37 @@ function showBlock(blockParam){
 	console.log("block!")
 	//warning fail
 	if(blockParam == 1){
+		$(".workID-box").css({ 'display': 'none' });
 		$(".game-box").css({ 'display': 'none' });
 		$(".block-box").css({'display':'block'});
-		$("#generateCode-button").css({'display':'block'});
 		$('.feedbackImage').attr("src",'');
 		$('.visImage').attr("src",'');
-		$("#block-text").text("sorry, you have been warning for bad performance three times, you will be blocked from our experiment, click the button below to generate your reward code, thanks for you participation!");
+		$(".block-instructions").text("sorry, you have been warning for three times, you will be blocked from our experiment, click the button below to generate your reward code, thanks for you participation!");
 	}
 	//isBlock at the beginning
 	else if(blockParam == 2){
+		$(".workID-box").css({ 'display': 'none' });
 		$(".game-box").css({ 'display': 'none' });
 		$(".block-box").css({'display':'block'});
-		$("#generateCode-button").css({'display':'none'});
 		$('.feedbackImage').attr("src",'');
 		$('.visImage').attr("src",'');
-		$("#block-text").text("sorry, you have been blocked");
+		$(".block-instructions").text("sorry, you have been blocked from our system!");
 	}
 	else if(blockParam == 3){
+		$(".workID-box").css({ 'display': 'none' });
 		$(".game-box").css({ 'display': 'none' });
 		$(".block-box").css({'display':'block'});
-		$("#generateCode-button").css({'display':'none'});
 		$('.feedbackImage').attr("src",'');
 		$('.visImage').attr("src",'');
-		$("#block-text").text("sorry, you failed in our practice three times, you have been blocked by our system");
+		$(".block-instructions").text("sorry, you failed in our practice three times, you have been blocked by our system");
+	}
+	else if(blockParam == 4){
+		$(".workID-box").css({ 'display': 'none' });
+		$(".game-box").css({ 'display': 'none' });
+		$(".block-box").css({'display':'block'});
+		$('.feedbackImage').attr("src",'');
+		$('.visImage').attr("src",'');
+		$(".block-instructions").text("sorry, you have finished all levels, thanks for your participation! hope you can attend our further experiment in the future");
 	}
 	else{
 
