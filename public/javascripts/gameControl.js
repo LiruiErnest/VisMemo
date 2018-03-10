@@ -39,7 +39,7 @@ function enterStartpage(data){
 	globalWorkerObj.WorkerID = data.WorkerID;
 	globalWorkerObj.finishLevel = data.finishLevel;
 	globalWorkerObj.isBlocked = data.isBlocked;
-	globalWorkerObj.practiceTimes = data.practiceTimes;
+	globalWorkerObj.practiceTimes = 0;
 	globalWorkerObj.warningTimes = data.warningTimes;
 	globalWorkerObj.passPractice = data.passPractice;
 

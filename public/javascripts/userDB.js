@@ -68,7 +68,8 @@ function insertUser(workerID){
     //console.log(workerID);
 
     var errorCount = 0;
-    if(($('#genderSelect').val() != '') && $('input[name=visualRate]').is(':checked') != false){
+    if(($('#genderSelect').val() != '') && $('input[name=visualRate]').is(':checked') != false &&
+        parseInt($('#age-text').val()) > 18){
 
         var newWorker = {
             'Age': $('#age-text').val(),
@@ -152,7 +153,7 @@ function updateUserPractice(workerID,practiceTimes,passPractice){
     var dataJson = {
         'WorkerID':workerID,
         'practiceTimes':practiceTimes,
-        'passPractice':passPractice
+        'passPractice':0
     }
     //console.log(dataJson);
     $.ajax({
@@ -161,21 +162,22 @@ function updateUserPractice(workerID,practiceTimes,passPractice){
         url:'users/updateworkerpractice',
         dataType: 'JSON',
         success:function(data){
+            showBlock(3);
             //console.log(data);
-            if(parseInt(globalWorkerObj.passPractice) == 1){
-                //pass
-                showPractice(1);
-            }
-            else{
-                if(parseInt(globalWorkerObj.practiceTimes) < 3){
-                    //show practice fail and let use do again
-                    showPractice(2);
-                }
-                else{
-                    //block user
-                    showBlock(3);
-                }
-            }
+            // if(parseInt(globalWorkerObj.passPractice) == 1){
+            //     //pass
+            //     showPractice(1);
+            // }
+            // else{
+            //     if(parseInt(globalWorkerObj.practiceTimes) < 3){
+            //         //show practice fail and let use do again
+            //         showPractice(2);
+            //     }
+            //     else{
+            //         //block user
+            //         showBlock(3);
+            //     }
+            // }
             
         },
         error:function(data){

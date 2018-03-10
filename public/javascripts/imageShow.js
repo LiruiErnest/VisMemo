@@ -208,26 +208,44 @@ function imageShow(){
 				updateUser(globalWorkerObj.WorkerID,userlog,globalWorkerObj.finishLevel);
 			}
 			else{
-				if(parseInt(globalWorkerObj.passPractice) == 1){
-					var performance = computeData(globalWorkerObj.finishLevel,imageCount);
-					if(performance.hitRate > 0.5 && performance.faRate < 0.3){
+				//practice
+				var performance = computeData(globalWorkerObj.finishLevel,imageCount);
+				if(performance.hitRate > 0.5 && performance.faRate < 0.3){
 						showPractice(1);
-					}
-					else{
-						showPractice(2);					
-					}
 				}
 				else{
-					var performance = computeData(globalWorkerObj.finishLevel,imageCount);
-					if(performance.hitRate > 0.5 && performance.faRate < 0.3){
-						//console.log("pass");
-						globalWorkerObj.passPractice = 1;
+					globalWorkerObj.practiceTimes = parseInt(globalWorkerObj.practiceTimes)+1;
+					if(globalWorkerObj.practiceTimes < 3){
+						//redo
+						showPractice(2);
 					}
 					else{
-						globalWorkerObj.practiceTimes = parseInt(globalWorkerObj.practiceTimes) + 1;					
+						//block
+						updateUserPractice(globalWorkerObj.WorkerID,3,0);
 					}
-					updateUserPractice(globalWorkerObj.WorkerID,globalWorkerObj.practiceTimes,globalWorkerObj.passPractice);
-				}												
+
+				}
+				// passPractice 
+				// if(parseInt(globalWorkerObj.passPractice) == 1){
+				// 	var performance = computeData(globalWorkerObj.finishLevel,imageCount);
+				// 	if(performance.hitRate > 0.5 && performance.faRate < 0.3){
+				// 		showPractice(1);
+				// 	}
+				// 	else{
+				// 		showPractice(2);					
+				// 	}
+				// }
+				// else{
+				// 	var performance = computeData(globalWorkerObj.finishLevel,imageCount);
+				// 	if(performance.hitRate > 0.5 && performance.faRate < 0.3){
+				// 		//console.log("pass");
+				// 		globalWorkerObj.passPractice = 1;
+				// 	}
+				// 	else{
+				// 		globalWorkerObj.practiceTimes = parseInt(globalWorkerObj.practiceTimes) + 1;					
+				// 	}
+				// 	updateUserPractice(globalWorkerObj.WorkerID,globalWorkerObj.practiceTimes,globalWorkerObj.passPractice);
+				// }												
 			}			
 			//stop show feedback
 			clearInterval(showFeedThread);

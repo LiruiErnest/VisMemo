@@ -2,7 +2,7 @@
 function generateGamesquence(){
 
 	//define experiment parameter
-	var fillerCount = 1660;
+	var fillerCount = 1658;
 	var targetCount = 410;
 	var levelCount = 17;
 	var levelImageCount = 120;
@@ -16,6 +16,8 @@ function generateGamesquence(){
 	//generate non-repeating random number, the range is the number of all images
 	var imageArr = getRandom(totalImageCount,0,fillerCount + targetCount - 1);
 
+	//z	`1console.log(imageArr);
+
 	//generate 17*120 image information array
 	var imageInfoArr = new Array();
 	for(var i = 0; i < levelCount; i++){
@@ -26,6 +28,7 @@ function generateGamesquence(){
 		}
 		imageInfoArr.push(levelArr);
 	}
+	//console.log(imageInfoArr);
 
 	//寻找每个level中的target，生成repeat
 	for(var i = 0; i < levelCount; i++){
@@ -38,6 +41,8 @@ function generateGamesquence(){
 				if(j <= levelImageCount - targetSpacingMin - 1){
 					var k = j + _.random(targetSpacingMin, 
 					(levelImageCount - j - 1)> targetSpacingMax ? targetSpacingMax : levelImageCount - j - 1);  //still to be debate
+					var space = k - j;
+					console.log(space);
 					imageInfoArr[i][k][0] = imageInfoArr[i][j][0];  //repeat image
 					imageInfoArr[i][k][1] = 1;
 					imageInfoArr[i][k][2] = 1;
@@ -45,6 +50,8 @@ function generateGamesquence(){
 			}
 		}
 	}
+
+	
 
 	//设立vigilance repeat image
 	for(var i = 0; i < levelCount; i++){
@@ -69,6 +76,8 @@ function generateGamesquence(){
 						} 
 					}
 					else{
+						var space = k - j;
+						console.log(space);
 						imageInfoArr[i][k][0] = imageInfoArr[i][j][0];   //repeat image
 						imageInfoArr[i][k][1] = 1;   //update isRepeat parameter
 						validRepeat = 1;     //break the loop
@@ -81,6 +90,8 @@ function generateGamesquence(){
 			}
 		}
 	}
+
+	console.log(imageInfoArr);
 
 	return imageInfoArr;
 }

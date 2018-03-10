@@ -1,0 +1,51 @@
+Item,Lowest,Item,Second,Item,Third,Item,Fourth,Item,Highest
+Other lunchmeats*,"5,979.37","Ham, not canned*","7,839.56",Bacon*,"10,765.09",Other steak*,"13,197.02",Ground beef*,"53,100.23"
+Lamb and organ meats*,"2,870.00",Canned ham*,"5,502.88",Pork chops*,"7,557.57",Other beef*,"12,790.86",Chuck roast*,"31,547.96"
+"Mutton, goat and game*",528.17,Sausage*,919.65,"Ham, not canned*","1,833.74",Bacon*,"3,592.48",Round roast*,"7,049.09"
+Fresh and frozen whole chicken*,273.3,Other pork*,441.37,Canned ham*,617.69,Pork chops*,974.66,Other roast*,"1,856.36"
+Fresh and frozen chicken parts*,239.13,Frankfurters*,330.52,Sausage*,427.49,"Ham, not canned*",505.86,Round steak*,749.39
+Other poultry*,223.26,"Bologna, liverwurst, salami*",328.44,Other pork*,400.33,Canned ham*,500.19,Sirloin steak*,742.43
+Canned fish and seafood*,219.29,Other lunchmeats*,296.22,Frankfurters*,388.29,Sausage*,492.79,Other steak*,736.11
+Fresh fish and shellfish*,190.79,Lamb and organ meats*,284.85,"Bologna, liverwurst, salami*",318.16,Other pork*,450.71,Other beef*,714.9
+Frozen fish and shellfish*,161.77,"Mutton, goat and game*",241.38,Other lunchmeats*,279.36,Frankfurters*,392.28,Bacon*,654.48
+"Fresh milk, all types*",153.11,Fresh and frozen whole chicken*,215.12,Lamb and organ meats*,273.55,"Bologna, liverwurst, salami*",337.4,Pork chops*,573.15
+Cream*,120.1,Fresh and frozen chicken parts*,131.96,"Mutton, goat and game*",214.33,Other lunchmeats*,292.39,"Ham, not canned*",544.77
+Butter*,103.15,Other poultry*,118.2,Fresh and frozen whole chicken*,159.69,Lamb and organ meats*,292.11,Canned ham*,472.84
+Cheese*,96.14,Canned fish and seafood*,117.48,Fresh and frozen chicken parts*,151.98,"Mutton, goat and game*",282.53,Sausage*,417.56
+Ice cream and related products*,84.36,Fresh fish and shellfish*,116.34,Other poultry*,149.7,Fresh and frozen whole chicken*,188.4,Other pork*,370.79
+Miscellaneous dairy products*,83.2,Frozen fish and shellfish*,114.51,Canned fish and seafood*,144.39,Fresh and frozen chicken parts*,188.33,Frankfurters*,346.09
+Apples*,75.85,"Fresh milk, all types*",113.79,Fresh fish and shellfish*,133.29,Other poultry*,186.49,"Bologna, liverwurst, salami*",338.3
+Bananas*,72.98,Cream*,108.23,Frozen fish and shellfish*,121.86,Canned fish and seafood*,166.27,Other lunchmeats*,305.58
+Oranges*,71.3,Butter*,105.85,"Fresh milk, all types*",119,Fresh fish and shellfish*,163.86,Lamb and organ meats*,296.34
+"Citrus fruits, excluding oranges*",70.71,Cheese*,97.77,Cream*,116.36,Frozen fish and shellfish*,157.75,"Mutton, goat and game*",290.01
+Other fresh fruits*,69.58,Ice cream and related products*,96.75,Butter*,114.3,"Fresh milk, all types*",153.03,Fresh and frozen whole chicken*,258.81
+Potatoes*,68.66,Miscellaneous dairy products*,92.4,Cheese*,113.4,Cream*,152.28,Fresh and frozen chicken parts*,256.38
+Lettuce*,66.86,Apples*,92.05,Ice cream and related products*,110.73,Butter*,149.49,Other poultry*,247.01
+Tomatoes*,65.44,Bananas*,90.93,Miscellaneous dairy products*,107.26,Cheese*,147.27,Canned fish and seafood*,235.48
+Other fresh vegetables*,64.55,Oranges*,89.02,Apples*,104.45,Ice cream and related products*,145.92,Fresh fish and shellfish*,205.74
+Frozen orange juice*,62.41,"Citrus fruits, excluding oranges*",87.59,Bananas*,104.1,Miscellaneous dairy products*,138.03,Frozen fish and shellfish*,205.52
+Frozen fruits*,57.08,Other fresh fruits*,87.1,Oranges*,92.51,Apples*,126.51,"Fresh milk, all types*",205.42
+Frozen fruit juices*,56.17,Potatoes*,84.18,"Citrus fruits, excluding oranges*",87.7,Bananas*,112.1,Cream*,203.36
+Canned fruits*,54.94,Lettuce*,75.67,Other fresh fruits*,85.93,Oranges*,110.87,Butter*,200.36
+Dried fruit*,53.9,Tomatoes*,73.5,Potatoes*,83.42,"Citrus fruits, excluding oranges*",104.17,Cheese*,186.74
+Fresh fruit juice*,51.41,Other fresh vegetables*,67.81,Lettuce*,79.96,Other fresh fruits*,103.3,Ice cream and related products*,174.59
+Canned and bottled fruit juice*,48.14,Frozen orange juice*,66.55,Tomatoes*,71.06,Potatoes*,89.98,Miscellaneous dairy products*,170.89
+Frozen vegetables*,45.69,Frozen fruits*,61.69,Other fresh vegetables*,62.98,Lettuce*,87.33,Apples*,163.42
+Canned beans*,44.22,Frozen fruit juices*,58.06,Frozen orange juice*,62.65,Tomatoes*,84.95,Bananas*,152.37
+Canned corn*,43.64,Canned fruits*,54.13,Frozen fruits*,62.4,Other fresh vegetables*,81.65,Oranges*,144.37
+Canned miscellaneous vegetables*,42.83,Dried fruit*,52.73,Frozen fruit juices*,61.2,Frozen orange juice*,81.22,"Citrus fruits, excluding oranges*",141.62
+Dried peas*,41.42,Fresh fruit juice*,51.9,Canned fruits*,61.09,Frozen fruits*,80.89,Other fresh fruits*,138.22
+Dried beans*,40.38,Canned and bottled fruit juice*,50.47,Dried fruit*,58.88,Frozen fruit juices*,79.74,Potatoes*,126.35
+Dried miscellaneous vegetables*,38.95,Frozen vegetables*,48.46,Fresh fruit juice*,58.7,Canned fruits*,77.02,Lettuce*,120.83
+Dried processed vegetables*,38.92,Canned beans*,48.03,Canned and bottled fruit juice*,57.77,Dried fruit*,76.2,Tomatoes*,115.92
+Frozen vegetable juices*,36.57,Canned corn*,46.95,Frozen vegetables*,57.19,Fresh fruit juice*,73.61,Other fresh vegetables*,110.76
+Fresh and canned vegetable juices*,35.41,Canned miscellaneous vegetables*,46.21,Canned beans*,57.11,Canned and bottled fruit juice*,70.85,Frozen orange juice*,105.46
+Candy and chewing gum*,35.13,Dried peas*,46.13,Canned corn*,55.81,Frozen vegetables*,69.95,Frozen fruits*,101.79
+Sugar*,34.42,Dried beans*,45.59,Canned miscellaneous vegetables*,53.59,Canned beans*,68.36,Frozen fruit juices*,100.12
+Artificial sweeteners*,33.13,Dried miscellaneous vegetables*,44.74,Dried peas*,53.37,Canned corn*,66.59,Canned fruits*,95.62
+"Jams, preserves, other sweets*",31.66,Dried processed vegetables*,42.43,Dried beans*,52.84,Canned miscellaneous vegetables*,65.05,Dried fruit*,95.05
+Margarine*,31.35,Frozen vegetable juices*,42.01,Dried miscellaneous vegetables*,52.51,Dried peas*,63.89,Fresh fruit juice*,92.35
+Fats and oils*,31.3,Fresh and canned vegetable juices*,41.82,Dried processed vegetables*,52.45,Dried beans*,62.77,Canned and bottled fruit juice*,92.03
+Salad dressings*,31.1,Candy and chewing gum*,39.93,Frozen vegetable juices*,50.09,Dried miscellaneous vegetables*,61.53,Frozen vegetables*,91.36
+Nondairy cream and imitation milk*,29.99,Sugar*,39.91,Fresh and canned vegetable juices*,49.68,Dried processed vegetables*,61.43,Canned beans*,90.86
+Peanut butter*,29.28,Artificial sweeteners*,39.06,Candy and chewing gum*,46.57,Frozen vegetable juices*,59.77,Canned corn*,90.8

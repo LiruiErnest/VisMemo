@@ -1,0 +1,135 @@
+body {
+  font: 12px "Helvetica", Helvetica, Arial, sans-serif; 
+  font-weight: normal;
+  background-color: #ffffff; background-size: 100% 100%; 
+}
+
+/*-------------------------------head-box--------------------------------------*/
+.head-box{position: absolute; left: 0%; width: 100%; height: 10%; 
+background-color: #336699;margin-left: auto; margin-right: auto;
+text-align:center;}
+
+#coursename{color: white; font-size: 1.4rem; line-height: 0.6rem;
+	}
+#authorinfo{color: #f7f7f7;}
+
+
+/*-------------------------------content-box--------------------------------------*/
+
+.content-box{position: absolute; top:12%; left:10%; width: 80%;
+	background-color: #ffffff;margin-left: auto; margin-right: auto;
+	text-align: left; font-size: 12px;}
+
+.imageResult{}
+
+
+
+/*-------------------------------table--------------------------------------*/
+table{
+	font-size: 12px;
+	width: 100%;
+	border-collapse: collapse; 
+}
+
+/*zebra striping*/
+tr:nth-of-type(odd){
+
+	background: #eee;
+}
+th{
+	background: #336699;
+	color:white;
+}
+td,th{
+	padding: 6px;
+	border: 1px solid #ccc;
+	text-align: center;
+}
+
+.flat-table{
+	margin: 10px;
+}
+
+/*-------------------------------p3 image div--------------------------------------*/
+
+#p3image{
+	padding: 10px;
+	width: 800px;
+	height: 540px;
+	color: #cccccc;
+	border:1px solid #cccccc;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.pieSvg{
+	padding: 10px 0 0 10px;
+}
+
+/*-------------------------------p4 image div--------------------------------------*/
+
+#p4image{
+	padding: 10px;
+	width: 400px;
+	height: 200px;
+	color: #cccccc;
+	border:1px solid #cccccc;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/*-------------------------------p5 image div--------------------------------------*/
+
+#p5image{
+	width: 1050px;
+	height: 440px;
+	color: #000;
+	border:1px solid #cccccc;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/*-------------------------------p6 image div--------------------------------------*/
+
+.table-scroll{
+	width: 100%;
+	height: 400px;
+	overflow: scroll;
+	border:1px solid #cccccc;
+}
+
+#p6image{
+	padding: 10px;
+	width: 1050px;
+	height: 840px;
+	color: #000;
+	border:1px solid #cccccc;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/*-------------------------------tips--------------------------------------*/
+.d3-tip {
+  line-height: 1;
+  font-weight: bold;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border-radius: 2px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
