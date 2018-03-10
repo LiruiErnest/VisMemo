@@ -41,8 +41,8 @@ function generateGamesquence(){
 				if(j <= levelImageCount - targetSpacingMin - 1){
 					var k = j + _.random(targetSpacingMin, 
 					(levelImageCount - j - 1)> targetSpacingMax ? targetSpacingMax : levelImageCount - j - 1);  //still to be debate
-					var space = k - j;
-					console.log(space);
+					//var space = k - j;
+					//console.log(space);
 					imageInfoArr[i][k][0] = imageInfoArr[i][j][0];  //repeat image
 					imageInfoArr[i][k][1] = 1;
 					imageInfoArr[i][k][2] = 1;
@@ -76,8 +76,8 @@ function generateGamesquence(){
 						} 
 					}
 					else{
-						var space = k - j;
-						console.log(space);
+						//var space = k - j;
+						//console.log(space);
 						imageInfoArr[i][k][0] = imageInfoArr[i][j][0];   //repeat image
 						imageInfoArr[i][k][1] = 1;   //update isRepeat parameter
 						validRepeat = 1;     //break the loop
@@ -91,7 +91,7 @@ function generateGamesquence(){
 		}
 	}
 
-	console.log(imageInfoArr);
+	//console.log(imageInfoArr);
 
 	return imageInfoArr;
 }
