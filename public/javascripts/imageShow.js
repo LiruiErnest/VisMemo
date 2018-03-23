@@ -1,4 +1,3 @@
-var test;
 //show image
 //got the url sequence
 function buildUrlObj(imageURL){
@@ -77,13 +76,15 @@ function readyGame(){
 	$(".loading").css({'display':'none'});
 	$(".game-box").css({'display':'block'});
 	$(".imageContainer").css({'display':'none'});
+	$(".header-instructions").text("Instructions");
 	
 	//before instruction set up
 	if(globalWorkerObj.isPracticeMode == 1){
 		$(".realgame-instructions").css({'display':'none'});
 		$(".practice-instructions").css({'display':'block'});
-		$(".icon-box").css({'display':'none'});
-		$('#begingame-button').css({'top':'40%'})
+		$(".icon-box").css({'display':'block'});
+		$('.icon-box').css({'top':'20%'})
+		$('#begingame-button').css({'top':'25%'})
 	}
 	else{
 		//real game instruction
@@ -91,6 +92,7 @@ function readyGame(){
 		var rightnowLevel = parseInt(globalWorkerObj.finishLevel)+1;
 		$("#rightNowLevel2").text("(Level "+rightnowLevel+")");
 		$(".icon-box").css({'display':'block'});
+		$('.icon-box').css({'top':'10%'})
 		$(".practice-instructions").css({'display':'none'});
 		$('#begingame-button').css({'top':'15%'})
 		
@@ -116,6 +118,7 @@ function imageShow(){
 	$("#begingame-button").css({ 'display': 'none' });
 	$(".imageContainer").css({'display':'block'});
 	$('.shader').css({'width':'0%'});    //reset the progress bar
+	$('.header-instructions').text("Press the 'Space' bar any time you see an image you saw before");
 	
 	//param set-up
 	var showTime = 1000;
@@ -205,7 +208,12 @@ function imageShow(){
 				for(var i = 0;i < globalSequence[globalWorkerObj.finishLevel].length; i++){
 					userlog = userlog + globalSequence[globalWorkerObj.finishLevel][i][0] + ',' + globalSequence[globalWorkerObj.finishLevel][i][3] + ';';
 				}
-				updateUser(globalWorkerObj.WorkerID,userlog,globalWorkerObj.finishLevel);
+				var performance = computeData(globalWorkerObj.finishLevel,imageCount);
+				var historyPerformance = performance.hitRate.toFixed(2);
+				if(parseInt(globalWorkerObj.finishLevel) > 0){
+					historyPerformance = globalWorkerObj.performance + ',' + historyPerformance;
+				}
+				updateUser(globalWorkerObj.WorkerID,userlog,globalWorkerObj.finishLevel,historyPerformance);
 			}
 			else{
 				//practice

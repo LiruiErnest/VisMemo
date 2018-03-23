@@ -9,6 +9,10 @@ body {
 a {color: #00B7FF;}
 
 
+table {font-size: 1rem;
+	font-family: Arial;
+}
+
 /**－－－－－－－－－－－－－public-end－－－－－－－－－－－－**/
 
 /**－－－－－－－－－－－－－ordermemo application page start－－－－－－－－－－－－**/
@@ -22,6 +26,9 @@ a {color: #00B7FF;}
 
 .ordermemo .main-box .header-box .header-instructions{text-align: center; top: 0%; padding: 0.4rem; position: relative; font-weight: bold;}
 
+
+/*------------------------------------------content-box-------------------------------------------*/
+
 /* box for present pictures, control button, feedback img or other things in the game. */
 .ordermemo .main-box .content-box{position: absolute; top:7%; left: 0%; width: 100%; height: 86%; background-color: #e6e6e6;
 	margin-left: auto; margin-right: auto}
@@ -29,13 +36,12 @@ a {color: #00B7FF;}
 .ordermemo .main-box .content-box .boldspan{font-weight: bold;}
 .ordermemo .main-box .content-box .redspan{color: red;font-weight: bold;}
 
-/*------------------------------------------workID-box-------------------------------------------*/
-
+/*------------------------------------------workerID-box-------------------------------------------*/
 
 .ordermemo .main-box .content-box .workID-box{position: absolute; left: 20%; width: 60%; height: 100%; background-color: #e6e6e6;
 	margin-left: auto; margin-right: auto;display: block;}
 
-.ordermemo .main-box .content-box .workID-box .game-name{text-align:center; font-weight: bold; position: relative; top:10%;}
+.ordermemo .main-box .content-box .workID-box .game-name{text-align:center; font-weight: bold; position: relative; top:10%; font-size: 2rem;}
 
 .ordermemo .main-box .content-box .workID-box .content-instructions{text-align: center; top: 15%; padding: 0.4rem; position: relative;}
 
@@ -43,16 +49,16 @@ a {color: #00B7FF;}
 
 /*.ordermemo .main-box .content-box .workID-box .submitworkID-button{width: 60%;height: 1.6rem;border-radius: 0.05rem; font-size: 0.8rem}*/
 
-.ordermemo .main-box .content-box .workID-box .submitworkID-button{height: 1.86rem; width: 10rem; border-radius: 0.2rem; 
-	background:#f0f0f0; margin: 0 auto; line-height:1.86rem; text-align: center; 
-	font-size: 0.8rem; color: #000000; cursor: pointer
+.ordermemo .main-box .content-box .workID-box .submitworkID-button{height: 2rem; width: 10rem; border-radius: 0.2rem; 
+	background:#2C3E50; margin: 0 auto; text-align: center; border: none;
+	font-size: 0.9rem; color: #ffffff; cursor: pointer
 }
-.ordermemo .main-box .content-box .workID-box .submitworkID-button:hover{background-color: #e6e6e6}
+.ordermemo .main-box .content-box .workID-box .submitworkID-button:hover{background-color: #34495E}
 
-.ordermemo .main-box .content-box .workID-box .hint-instruction{position: relative; top: 20%; text-align: center;}
+.ordermemo .main-box .content-box .workID-box .hint-instruction{position: relative; top: 20%; text-align: center; line-height: 1.5rem;}
 
 .ordermemo .main-box .content-box .workID-box .workIDhint-box{position: relative;
-	width: 80%; height: 50%;left: 10%; top:25%; text-align: center;}
+	width: 80%; height: 40%;left: 10%; top:25%; text-align: center;}
 
 /*--------------------------------------------consent-box------------------------------------------*/
 
@@ -65,15 +71,15 @@ a {color: #00B7FF;}
 	height: 80%; background-color: #ffffff; padding: 1rem;
 	margin-left: auto; margin-right: auto; text-align: center;border:1px solid #cccccc; overflow-y: scroll;}
 
-#consentAgree-button{height: 1.86rem; width: 10rem; border-radius: 0.2rem; top:92%; right: 30%; position: absolute;
-	background:#f0f0f0; margin: 0 auto; line-height:1.86rem; text-align: center; 
-	font-size: 0.8rem; color: #000000; cursor: pointer}
-#consentAgree-button:hover{background-color: #e6e6e6}
+#consentAgree-button{height: 2rem; width: 10rem; border-radius: 0.2rem; 
+	background:#2C3E50; margin: 0 auto; text-align: center; border: none;
+	font-size: 0.9rem; color: #ffffff; cursor: pointer; top:92%; right: 30%; position: absolute;}
+#consentAgree-button:hover{background-color: #34495E}
 
-#consentDecline-button{height: 1.86rem; width: 10rem; border-radius: 0.2rem; top:92%; left: 30%; position: absolute;
-	background:#f0f0f0; margin: 0 auto; line-height:1.86rem; text-align: center; 
-	font-size: 0.8rem; color: #000000; cursor: pointer}
-#consentDecline-button:hover{background-color: #e6e6e6}
+#consentDecline-button{top:92%; left: 30%; position: absolute; height: 2rem; width: 10rem; border-radius: 0.2rem; 
+	background:#2C3E50; margin: 0 auto; text-align: center; border: none;
+	font-size: 0.9rem; color: #ffffff; cursor: pointer;}
+#consentDecline-button:hover{background-color: #34495E}
 
 /*-----------------------------------------demographic-box-------------------------------------*/
 .ordermemo .main-box .content-box .demo-box{position: absolute; left: 10%; width: 80%; height: 100%; background-color: #e6e6e6;
@@ -85,45 +91,41 @@ a {color: #00B7FF;}
 
 .ordermemo .main-box .content-box .table-box{width: 100%; height: 80%; position: relative; top: 5%;}
 
-.ordermemo .main-box .content-box .demo-box .demoTable{left: 0%; position: relative; width: 100%; height: 40%; top:20%;}
+.ordermemo .main-box .content-box .demo-box .demoTable{left: 10%; position: relative; width: 80%; height: 45%; top:20%;
+border: 1px dashed #2c4e50; background:#ffffff;}
 
 .ordermemo .main-box .content-box .demo-box .demoTR{height: 2rem; text-align: center;}
 
 .ordermemo .main-box .content-box .demo-box .demoTD{}
 
-#demoSubmit{height: 1.86rem; width: 10rem; border-radius: 0.2rem; top:92%; left: 30%; position: absolute;
-	background:#f0f0f0; margin: 0 auto; line-height:1.86rem; text-align: center; 
-	font-size: 0.8rem; color: #000000; cursor: pointer}
-#demoSubmit:hover{background-color: #e6e6e6}
+#demoSubmit{height: 2rem; width: 10rem; border-radius: 0.2rem; 
+	background:#2C3E50; margin: 0 auto; text-align: center; border: none;
+	font-size: 0.9rem; color: #ffffff; cursor: pointer;top:92%; right: 30%; position: absolute;}
+#demoSubmit:hover{background-color: #34495E}
 
-#demoSkip{height: 1.86rem; width: 10rem; border-radius: 0.2rem; top:92%; right: 30%; position: absolute;
-	background:#f0f0f0; margin: 0 auto; line-height:1.86rem; text-align: center; 
-	font-size: 0.8rem; color: #000000; cursor: pointer}
-#demoSkip:hover{background-color: #e6e6e6}
+#demoSkip{height: 2rem; width: 10rem; border-radius: 0.2rem; 
+	background:#2C3E50; margin: 0 auto; text-align: center; border: none;
+	font-size: 0.9rem; color: #ffffff; cursor: pointer;top:92%; left: 30%; position: absolute;}
+#demoSkip:hover{background-color: #34495E}
 
-#demowarning{position: absolute;width: 100%; text-align: center;top: 80%; display: none;}
+#demowarning{position: absolute;width: 100%; text-align: center;top: 80%; display: none; color: red;}
 
 /*--------------------------------------------game-box------------------------------------------*/
-.ordermemo .main-box .content-box .game-box .game-instructions{position: relative; top: 5%; line-height: 1.5rem}
+.ordermemo .main-box .content-box .game-box .game-instructions{position: relative; top: 20%; line-height: 1.5rem}
 
 .ordermemo .main-box .content-box .game-box{position: absolute; left: 20%; width: 60%; height: 100%; background-color: #e6e6e6;
 	margin-left: auto; margin-right: auto;display: none}
 
-.ordermemo .main-box .content-box .game-box #start-practice{ height: 2.86rem; width: 10rem; top: 10%;
-	border-radius: 0.2rem; position: relative;
-	background:#f0f0f0; margin: 0 auto; line-height:1.86rem; text-align: center; 
-	font-size: 14px; color: #000000; cursor: pointer; }
-.ordermemo .main-box .content-box .game-box #start-practice:hover{background-color: #e6e6e6}
+.ordermemo .main-box .content-box .game-box #start-practice{ height: 2.86rem; width: 10rem; top: 25%;
+	border-radius: 0.2rem; position: relative; border: none;
+	background:#2C3E50; margin: 0 auto; text-align: center; 
+	font-size: 14px; color: #ffffff; cursor: pointer; }
+.ordermemo .main-box .content-box .game-box #start-practice:hover{background-color: #34495E}
 
-/*.ordermemo .main-box .content-box .game-box #skip-practice{ height: 2.86rem; width: 10rem; top: 12%;
-	border-radius: 0.1rem; position: relative;
-	background:#f0f0f0; margin: 0 auto; line-height:1.86rem; text-align: center; 
-	font-size: 14px; color: #000000; cursor: pointer; }
-.ordermemo .main-box .content-box .game-box .skip-button:hover{background-color: #e6e6e6}*/
+.ordermemo .main-box .content-box .game-box .instructions{text-align: left; position: relative;top: 30%; line-height: 1.5rem;}
 
-.ordermemo .main-box .content-box .game-box .instructions{text-align: left; position: relative;top: 16%}
-
-.ordermemo .main-box .content-box .game-box .practice-instructions{text-align: left; line-height: 1.5rem; top: 30%; position: relative; display: none}
+.ordermemo .main-box .content-box .game-box .practice-instructions{text-align: left; line-height: 1.5rem; top: 20%; 
+left: 0%;width: 100%; position: relative; display: none}
 
 .ordermemo .main-box .content-box .game-box .realgame-instructions{text-align: left; line-height: 1.5rem; top: 10%; position: relative; display: none}
 
@@ -133,10 +135,10 @@ a {color: #00B7FF;}
 
 .ordermemo .main-box .content-box .game-box .instru-false-img{width: 1.6rem; height: 1.6rem}
 
-#begingame-button{height: 1.86rem; width: 7rem; border-radius: 0.2rem; top:40%; position: relative;
-	background:#f0f0f0; margin: 0 auto; line-height:1.86rem; text-align: center; 
-	font-size: 14px; color: #000000; cursor: pointer; display: none}
-#begingame-button:hover{background-color: #e6e6e6}
+#begingame-button{height: 2rem; width: 7rem; border-radius: 0.2rem; top:40%; position: relative;
+	background:#2C3E50; margin: 0 auto;  text-align: center; border: none;
+	font-size: 0.9rem; color: #ffffff; cursor: pointer; display: none}
+#begingame-button:hover{background-color: #34495E}
 
 .imageContainer{
 	display: none;
@@ -154,52 +156,88 @@ a {color: #00B7FF;}
 
 /*--------------------------------------------summary-box------------------------------------------*/
 
-.ordermemo .main-box .content-box .summary-box{position: absolute; line-height: 1.5rem; left: 20%; top: 20%; width: 60%; height: 80%; background-color: #e6e6e6;
+.ordermemo .main-box .content-box .summary-box{position: relative; line-height: 1.5rem; 
+	left: 0%; top: 0%; width: 100%; height: 100%; background-color: #e6e6e6;
 	margin-left: auto; margin-right: auto;display: none; text-align: left;}
 
-#nextlevel-button{height: 1.86rem; width: 7rem; border-radius: 0.2rem; top:10%; position: relative;
-	background:#f0f0f0; margin: 0 auto; line-height:1.86rem; text-align: center; 
-	font-size: 0.8rem; color: #000000; cursor: pointer; display: none}
-#nextlevel-button:hover{background-color: #e6e6e6}
+#summary-level{position: relative; text-align: center; top: 5%; text-decoration: underline; font-weight: bold;}
+#summary-rest-time{position: relative; text-align: center; top: 12%; line-height: 1.5rem;}
+#summary-time{font-weight: bold; font-size: 2rem;}
+#summary-time-note{font-size: 1.0rem; font-style: italic;}
+#summary-code{position: relative;text-align: center;top:12%;}
 #levelcode{font-weight: bold;color: #53ac58}
+#summary-instruction{position: relative;text-align: center;top: 12%;}
+#summary-chart{position: relative;top: 15%;border: 1px solid #2C3E50;background:#ffffff;
+width: 800px; height: 320px; margin:auto;}
+#level-chart{background: #ffffff;width: 350px;height: 300px;position: absolute;
+left: 35px;top: 10px;}
+#reward-chart{background: #ffffff;width: 350px;height: 300px;position: absolute;
+left: 415px;top: 10px;}
+.scoreline{fill: none;stroke: #359ad7;stroke-width:3px;}
+.rewardline{fill: none;stroke: #2ECC71;stroke-width:3px;}
+.rewardbackline{fill: none;stroke: #7F8C8D;stroke-width:2px;opacity: 0.5;stroke-dasharray:10}
+.d3-tip {
+  line-height: 1.5;
+  font-family: "Arial";
+  font-weight: normal;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border-radius: 2px;
+}
+
+#nextlevel-button{height: 2rem; width: 9rem; border-radius: 0.2rem; top:22%; position: relative;
+	background:#2C3E50; margin: 0 auto;  text-align: center; border: none;
+	font-size: 0.9rem; color: #ffffff; cursor: pointer; display: none}
+#nextlevel-button:hover{background-color: #34495E}
+
+#summary-exit-button{height: 2rem; width: 9rem; border-radius: 0.2rem; top:25%; position: relative;
+	background:#2C3E50; margin: 0 auto;  text-align: center; border: none;
+	font-size: 0.9rem; color: #ffffff; cursor: pointer; display: block}
+#summary-exit-button:hover{background-color: #34495E}
+
 
 /*--------------------------------------------warning-box------------------------------------------*/
 
-.ordermemo .main-box .content-box .warning-box{position: absolute; left: 20%; top: 20%; width: 60%; height: 100%; background-color: #e6e6e6;
-	margin-left: auto; margin-right: auto;display: none; text-align: center;}
+.ordermemo .main-box .content-box .warning-box{position: relative; left: 0%; top: 0%; width: 80%; height: 100%; background-color: #e6e6e6;
+	margin: auto;display: none; text-align: center;}
 
-#redolevel-button{height: 1.86rem; width: 10rem; border-radius: 0.2rem; top:10%; position: relative;
-	background:#f0f0f0; margin: 0 auto; line-height:1.86rem; text-align: center; 
-	font-size: 0.8rem; color: #000000; cursor: pointer; display: none}
-#redolevel-button:hover{background-color: #e6e6e6}
+#warning-text{top:35%; position: relative; line-height: 1.5rem;}
+
+#redolevel-button{height: 1.86rem; width: 10rem; border-radius: 0.2rem; top:40%; position: relative;
+	background:#2C3E50; margin: 0 auto;  text-align: center; border: none;
+	font-size: 0.8rem; color: #ffffff; cursor: pointer; display: none}
+#redolevel-button:hover{background-color: #34495E}
 
 /*--------------------------------------------practice-box------------------------------------------*/
 
-.ordermemo .main-box .content-box .practice-box{position: absolute; left: 20%; top: 20%; width: 60%; height: 100%; background-color: #e6e6e6;
+.ordermemo .main-box .content-box .practice-box{position: relative;  width: 100%; height: 100%; background-color: #e6e6e6;
 	margin-left: auto; margin-right: auto;display: none; text-align: center;}
 
-#repractice-button{height: 1.86rem; width: 10rem; border-radius: 0.2rem; top:10%; position: relative;
-	background:#f0f0f0; margin: 0 auto; line-height:1.86rem; text-align: center; 
-	font-size: 0.8rem; color: #000000; cursor: pointer; display: none}
-#repractice-button:hover{background-color: #e6e6e6}
+#practice-text{top:35%; position: relative; line-height: 1.5rem;}
+
+#repractice-button{height: 2rem; width: 10rem; border-radius: 0.2rem; top:40%; position: relative;
+	background:#2C3E50; margin: 0 auto; text-align: center; border: none;
+	font-size: 0.9rem; color: #ffffff; cursor: pointer; display: none}
+#repractice-button:hover{background-color: #34495E}
 
 #goback-button{height: 1.86rem; width: 10rem; border-radius: 0.2rem; top:20%; position: relative;
-	background:#f0f0f0; margin: 0 auto; line-height:1.86rem; text-align: center; 
+	background:#f0f0f0; margin: 0 auto; text-align: center; 
 	font-size: 0.8rem; color: #000000; cursor: pointer; display: none}
 #goback-button:hover{background-color: #e6e6e6}
 
 /*--------------------------------------------block-box------------------------------------------*/
 
-.ordermemo .main-box .content-box .block-box{position: absolute; left: 20%; top: 20%; width: 60%; height: 100%; background-color: #e6e6e6;
+.ordermemo .main-box .content-box .block-box{position: relative; left: 0%; top: 0%; width: 80%; height: 100%; background-color: #e6e6e6;
 	margin-left: auto; margin-right: auto;display: none; text-align: center;}
 
-.ordermemo .main-box .content-box .block-instructions{position: relative;top:25%; text-align: center;}
+.ordermemo .main-box .content-box .block-instructions{position: relative;top:40%; text-align: center; line-height: 1.5rem;}
 
 
 /*-------------------------------------------loading-bar------------------------------------------*/
 
 .ordermemo .main-box .content-box .loading{height: 1.86rem; top:35%; text-align: center; display: none; position: relative;
-background:#f0f0f0; line-height: 1.86rem}
+background:#f0f0f0; line-height: 1.86rem;font-family:"Arial";}
 
 /*-------------------------------------------footer-box------------------------------------------*/
 

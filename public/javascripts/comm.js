@@ -1,6 +1,6 @@
 //Define common functions of the whole system
 
-//get random arrayß
+//get random array
 function getRandom(numCount,numMin,numMax) {
     var numList = [];
     //var numMin = 0;
@@ -28,3 +28,71 @@ function getRandom(numCount,numMin,numMax) {
 
     return outPut;
 }
+
+//time tansform
+function secondToMinute(s){
+    var t;
+    if(s > -1){
+        var hour = Math.floor(s/3600);
+        var min = Math.floor(s/60) % 60;
+        var sec = s % 60;
+        // if(hour < 10) {
+        //     t = '0'+ hour + ":";
+        // } else {
+        //     t = hour + ":";
+        // }
+        if(min < 10){t = '0' + min + ":";}
+        else{t = min + ':'}
+        if(sec < 10){t += "0";}
+        t += sec;
+    }
+    return t;
+}
+
+//check if age valid
+function isValidAge(age){
+    if(age == ''){
+        $('#demowarning').css({'display':'none'});
+        return true;
+    }
+    if(isNaN(age)){
+        $('#demowarning').text("Your age must be a number!");
+        $('#demowarning').css({'display':'block'});
+        return false;
+    }
+    else{
+       if(age > 17 && age < 150){
+            $('#demowarning').css({'display':'none'});
+            return true;
+        }
+        else{
+            $('#demowarning').text("You must be at least 18 years old to participate in our game!");
+            $('#demowarning').css({'display':'block'});
+            return false;
+        } 
+    }  
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -37,6 +37,7 @@ router.put('/updateworkerlab',function(req,res){
     var nextlevel = parseInt(level) + 1;
     var labLevel = "labResult"  + '[L' + level + ']';
     var labResult = req.body.labResult;
+    var performance = req.body.performance;
 
     // create the code
     var codeHash = crypto.createHash('md5');
@@ -49,6 +50,7 @@ router.put('/updateworkerlab',function(req,res){
     setArgs[labLevel] = labResult;
     setArgs[codeLevel] = code;
     setArgs['finishLevel'] = nextlevel;
+    setArgs['performance'] = performance;
 
     if(parseInt(nextlevel) == 17){
         setArgs['isBlocked'] = 1;

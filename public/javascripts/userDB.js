@@ -68,8 +68,7 @@ function insertUser(workerID){
     //console.log(workerID);
 
     var errorCount = 0;
-    if(($('#genderSelect').val() != '') && $('input[name=visualRate]').is(':checked') != false &&
-        parseInt($('#age-text').val()) > 18){
+    if(($('#genderSelect').val() != '') && $('input[name=visualRate]').is(':checked') != false && isValidAge($('#age-text').val())){
 
         var newWorker = {
             'Age': $('#age-text').val(),
@@ -85,7 +84,8 @@ function insertUser(workerID){
             'labResult':{'L0':'','L1':'','L2':'','L3':'','L4':'','L5':'','L6':'','L7':'','L8':'','L9':'','L10':''
         ,'L11':'','L12':'','L13':'','L14':'','L15':'','L16':''},
             'practiceTimes':0,
-            'warningTimes':0
+            'warningTimes':0,
+            'performance':''
         }
 
         $.ajax({
@@ -102,6 +102,7 @@ function insertUser(workerID){
             dataObj.practiceTimes = 0;
             dataObj.warningTimes = 0;
             dataObj.passPractice = 0;
+            dataObj.performance = '';
             enterStartpage(dataObj);
         },
         error:function(data){
@@ -111,19 +112,22 @@ function insertUser(workerID){
         $('#demowarning').css({'display':'none'});
 
     }
-    else if(parseInt($('#age-text').val()) < 18){
-        $('#demowarning').text("You must older than 18 years old to participate our experiment!");
-        $('#demowarning').css({'display':'block'});
-    }
     else{
-        $('#demowarning').css({'display':'block'});
+        if(isValidAge($('#age-text').val())){
+            $('#demowarning').text("Please fill in all fields with * !");
+            $('#demowarning').css({'display':'block'});
+        }
+        else{
+            isValidAge($('#age-text').val());
+        }       
     }
 }
 
 //update a worker's record
-function updateUser(workerID,labResult,level){
+function updateUser(workerID,labResult,level,performance){
     //{$set:{labLevel:labResult}}
     var dataJson = {
+            'performance':performance,
             'labResult': labResult,
             'level':level,
             'WorkerID':workerID,
@@ -137,6 +141,7 @@ function updateUser(workerID,labResult,level){
         success:function(data){
             //console.log(data);
             var codelevel = "code[L" + globalWorkerObj.finishLevel + "]";
+            globalWorkerObj.performance = performance;
             globalWorkerObj.code = data.msg[codelevel];
             globalWorkerObj.finishLevel = parseInt(globalWorkerObj.finishLevel) + 1;
             //enter feedback page and ready to next level

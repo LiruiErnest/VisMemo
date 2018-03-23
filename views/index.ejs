@@ -3,6 +3,7 @@
 <head>
     <title>VisMemo</title>
     <link rel='stylesheet' href='/stylesheets/style.css'/>
+    <!-- <link rel='stylesheet' href='/stylesheets/style-white.css'/> -->
 
 </head>
 <body class="ordermemo">
@@ -10,6 +11,7 @@
 <script type="text/javascript" src="/lib/underscore-min.js"></script>
 <script type="text/javascript" src="/lib/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="/lib/country-state-select.js"></script>
+<script type="text/javascript" src="/lib/d3-tip.js"></script>
 
 
 <script type="text/javascript" src="/javascripts/gameControl.js"></script>
@@ -20,6 +22,7 @@
 <script type="text/javascript" src="/javascripts/imageDB.js"></script>
 <script type="text/javascript" src="/javascripts/imageShow.js"></script>
 <script type="text/javascript" src="/javascripts/dataAnalysis.js"></script>
+<script type="text/javascript" src="/javascripts/plotSummary.js"></script>
 
 
 
@@ -44,8 +47,8 @@
 
         <div class="workID-box">
 
-            <p class="game-name">Memory Game</p>
-            <p class="content-instructions">Welcome to our memory game, please input your AMT workerID below.</p>
+            <p class="game-name">Visual Memory Game</p>
+            <p class="content-instructions">Welcome to our memory game, please enter your Amazon Mechanical Turk (AMT) workerID below.</p>
             <table class="workIDTable">
                 <tr style="height: 2rem">
                     <td style="width: 50%;text-align: right;">
@@ -62,13 +65,14 @@
                 </tr>
             </table>
 
-            <p class="hint-instruction">Hint: You can find you workerID on your Dashboard or in the upper left corner of the new Worker
-                    website</p>
+            <p class="hint-instruction"> <!-- <span class="boldspan">Hint 1:</span> We recommend that you use <span class="boldspan">Mozilla Firefox</span> or <span class="boldspan">Google Chrome</span> for accessing our game. These are FREE and modern web-browsers which will improve your game experience.<br> -->
+            <span class="boldspan">Hint: </span> You can find you workerID on your Dashboard or in the upper left corner of the new Worker
+                    website.</p>
 
 
 
             <div class="workIDhint-box">             
-                <img id="workIDHintImg" src="/images/workIDhint.png" style="width: 18rem; height: 6rem; ">
+                <img id="workIDHintImg" src="/images/workIDhint.png" style="width: 18rem; height: 6rem; border: 1px solid black ">
                 <p style="color: red;display: none;" id="warningText">Please fill in the WorkerID!</p>
             </div>
         
@@ -95,9 +99,9 @@ access our memory game.</p>
         <div class="demo-box">
 
             <div class="demo-p-box">
-                <p class="demo-instructions">In order to improve our further research, we hope you can provide us the basic demographic information.
-                 we promise that your demographic information will keep confidential. 
-                <br> The fields <span class="boldspan">WITHOUT</span> <span class="redspan">*</span> are not mandatory. If you do <span class="boldspan">NOT</span> want any information to be collected online, just click the <span class="boldspan">"SKIP"</span> button without filling blanks, then you can begin our game directly.</p>
+                <p class="demo-instructions">Some journals request additional data from authors to aid in their diversity initiatives. Thus, we would like you to provide the following demographic information.
+                <br> we promise that your demographic information will keep confidential. 
+                <br> <span class="boldspan">Note: </span> The fields <span class="boldspan">WITHOUT</span> <span class="redspan">*</span> are not mandatory. If you do <span class="boldspan">NOT</span> want this information to be collected online. You can just click the <span class="boldspan">"SKIP"</span> button to enter the game without having to fill these blanks.</p>
                 
             </div>
 
@@ -106,18 +110,6 @@ access our memory game.</p>
           <div class="table-box">
               <table class="demoTable">               
                 <tr class="demoTR" >
-                    <td></td>
-                    <td>
-                        <span class="redspan">*</span><span>Gender: &nbsp;&nbsp;</span>
-                        <select id="genderSelect" style="height: 1.5rem; width: 10rem;font-size: 0.9rem;" >
-                            <option></option>
-                            <option>Male</option>
-                            <option>Female</option>
-                        </select>
-                    </td>
-                    <td></td>
-                </tr>
-                <tr class="demoTR">
                     <td></td>
                     <td>
                         <span>Age: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
@@ -129,7 +121,19 @@ access our memory game.</p>
                     <td></td>
                     <td style="text-align: center;">
                         <span>Country: &nbsp;&nbsp;</span> 
-                        <select id="country2" name="country2" style="height: 1.5rem; width: 10rem;font-size: 0.9rem">USA</select>
+                        <select id="country2" name="country2" style="height: 1.5rem;-webkit-appearance: menulist-button; width: 10rem;font-size: 0.9rem">USA</select>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr class="demoTR">       
+                    <td></td>
+                    <td>
+                        <span class="redspan">*</span><span>Gender: &nbsp;&nbsp;</span>
+                        <select id="genderSelect" style="height: 1.5rem; -webkit-appearance: menulist-button; width: 10rem;font-size: 0.9rem;" >
+                            <option value="">Select Gender</option>
+                            <option>Male</option>
+                            <option>Female</option>
+                        </select>
                     </td>
                     <td></td>
                 </tr>
@@ -152,8 +156,8 @@ access our memory game.</p>
               </table>
           </div>
           
-          <p id="demowarning">
-              <span class="redspan">Please fill in fields with * !</span>
+          <p id="demowarning" >
+              <span class="redspan">Please fill in all fields with * !</span>
           </p>
 
           <button id="demoSubmit">Submit</button>
@@ -165,43 +169,55 @@ access our memory game.</p>
 
         <div class="game-box">
 
-            <p class="game-instructions">Dear participant, thanks for taking part in our online memorability experiment, please read the following information carefully and click <span class="boldspan">“Practice”</span> button to begin our experiment.</p>
+            <p class="game-instructions">Dear participant, thanks for taking part in our online memorability experiment. Please read the following information carefully and click <span class="boldspan">“Practice”</span> button to begin our experiment.</p>
 
             <button class="practice-button" id="start-practice">Start Practice</button>
 
             <!-- <button class="practice-button" id="skip-practice">Skip Practice</button> -->
 
-            <p class="instructions">By making judgement about these images, you are participating in a study being
-                performed by scientist in Computer Science and Engineering Department of the Ohio State
-                University. If you have questions about this research, please contact Dr. Chen as chen.8028@osu.edu,
-                your performance in this research is voluntary, you may quit the experiment at any time without any
-                adverse consequence. Your anonymity is ensured, the researchers who have request your participation will
-                not receive any personal information from you.</p>
+            <p class="instructions">By making judgments about these images, you are participating in a study being
+                performed by the scientists in the Computer Science and Engineering Department of the Ohio State
+                University. If you have questions about this research, please contact Dr. Jian Chen as chen.8028@osu.edu.
+                Your performance in this research is voluntary. You may quit the experiment at any time without any adverse consequence. Your anonymity is ensured, the researchers who have requested your participation will not receive any personal information about you.</p>
 
-            <p class="practice-instructions">Welcome to our practice test, in this section, you will see <span class="boldspan">30</span> images, where some images will repeat for 2 times, please press <span class="boldspan">“space”</span> key when you see an image you saw before.
-            <br><br>
-            You will have <span class="boldspan">three</span> chances for this test, if you fail three times, you will be blocked from our experiment without any rewards.
+            <p class="practice-instructions">Dear participant, welcome to our practice test! 
+            In this section, a stream of images (30 images totally) will be presented on the screen for <span class="boldspan">1 second</span>  each. <br><br>
+
+            Press the <span class="boldspan">"space"</span> bar anytime you see an image you saw before. <br><br>
+
+            Be attentive, repeats may be separated by many images! <br><br>
+
+            You may exit the test at any time. <br>
+            <span class="boldspan">Note:</span> When you log back in, you need to retake the test. <br><br>
+
+            You must pass the test in order to continue the real game, you will have up to <span class="boldspan">three</span> chances to take the test. <br><br>
+
+            Whenever you press the <span class="boldspan">"space"</span> bar, you will get <span class="boldspan">feedback</span>: 
+
             </p>
 
             <p class="realgame-instructions">Great job! Now you will start the real game <span class="boldspan" id="rightNowLevel2"></span>. The game will be just like the practice you just played. Except longer(<span class="boldspan">120</span> images per level) and a bit more difficult. So, pay attention!<br><br>
 
             You will be paid <span class="boldspan">0.8$ per complete level</span>, each of which lasts about <span class="boldspan">5</span> minutes. Depending on availability and performance, you may be able to complete <span class="boldspan">multiple levels!</span> (<span class="boldspan">17</span> levels totally)<br><br>
 
-            Once you finished one level, you will find a brief summary of your performance and the reward code which you can enter on Amazon Mechanical Turk. <br>
-            <span class="boldspan">Note:</span> you will be rewarded <span class="boldspan">extra bonus</span> if you did a great job on previous level.<br><br>
+            Once you finished one level, you will find a brief summary of your performance and the reward code that can be used on Amazon Mechanical Turk.  <br>
 
-            Between each level, you can take a break.<br><br>
+            <span class="boldspan">Note:</span> you will be rewarded <span class="boldspan">extra bonus</span> if you did a great job on the previous level.<br><br>
 
-            You may exit the game at any time. <br><br>
+            Between each level, you get to take a break.<br><br>
 
-            Press the <span class="boldspan">"space"</span> key any time you see an image you saw before. Repeats may be separated by many images.<br><br>
+            You may exit the game at any time. We will store your progress (last completed level)<br>
+            <span class="boldspan">Note: </span>
+            If you opt out midway through this level, you will need to replay this level when you log in again.<br><br>
 
-            Whenever you press the ‘space’ key, you will get <span class="boldspan">feedback</span>: 
+            Press the <span class="boldspan">"space"</span> bar any time you see an image you saw before. Repeats may be separated by many images.<br><br>
+
+            Whenever you press the <span class="boldspan">"space"</span> bar, you will get <span class="boldspan">feedback</span>: 
 
             </p>
 
             <div class="icon-box">
-                <table class="icontable" style="margin:auto;">
+                <table class="icontable" style="margin:auto; width: 12rem">
                     <tr>
                         <td style="padding: 1rem;">
                             <img src="/images/correct.png" class="instru-correct-img">
@@ -232,7 +248,39 @@ access our memory game.</p>
 
         <!-- show summary information -->
         <div class="summary-box">
-            <p style="font-weight: bold;" id="summary-p">Your score in this level is:</p>
+
+            <p id="summary-level">Level
+                <span id="summary-nowlevel"> 9 </span>
+                out of 17 complete!
+            </p>
+
+            <p id="summary-rest-time">               
+                <span id="summary-time">Rest time remaining: 4:59 </span> <br>
+                <span id="summary-time-note">(game will automatically end if you do not press "start next level" before rest time is up)</span>
+            </p>
+
+            <p id="summary-code"><br>
+                <span class="boldspan">Your reward code is: </span> 
+                <span id=levelcode></span>
+            </p>
+
+            <p id="summary-instruction">
+                Hovering over each dot on the line chart shows your score associated with each level.
+            </p>
+
+            <div id="summary-chart">
+                <div id="level-chart">
+                    
+                </div>
+                <div id="reward-chart">
+                    
+                </div>
+            </div>
+
+            <button id = "nextlevel-button">Enter next level</button>   
+            <button id = "summary-exit-button">Exit Game</button>
+
+            <!-- <p style="font-weight: bold;" id="summary-p">Your score in this level is:</p>
             <br><br>
             <p id="hit-p">The number of visualization was recognized when shown for the second time:</p><br><br>
             <p id="miss-p">The number of visualization was not recognized (missed) when shown for the second time</p><br><br>
@@ -241,15 +289,14 @@ access our memory game.</p>
             <p id="levelcode-p"><br>
                 <label>Your reward code is: </label>
                 <label id=levelcode></label>
-            </p>    
+            </p>     -->          
 
-            <button id = "nextlevel-button">Enter next level</button>     
         </div>
 
         <!-- warning information -->
         <div class="warning-box">
-            <p id="warning-text">Oops, you just selected more than 50% new images as repeated images in the past 30 images, please retake this level by clicking the <span class="boldspan">“redo“</span> button.</p>
-            <p id="warning-note"><span class="boldspan">Note:</span> if you failed in our vigilance task for <span class="boldspan">three</span> times, you will be blocked from our game!</p>
+            <p id="warning-text">Sorry, according to our records, you have marked too many image that appear for the <span class="boldspan">first time</span> as duplicates. Please retake this level by clicking the <span class="boldspan">redo</span> button below.</p>
+            <!-- <p id="warning-note"><span class="boldspan">Note:</span> This is the <span id=warning-times></span> time you've been warned by the system. If you were warned by the system three times, you would not be able to continue to participate in our game.</p> -->
 
             <button id = "redolevel-button">Redo the level</button>
         </div>
@@ -257,7 +304,9 @@ access our memory game.</p>
         <!-- practice information -->
         <div class="practice-box">
             <p id="practice-text">
-                Sorry, you just failed in our practice test, please redo the practice test by clicking the <span class="boldspan">'redo'</span> practice button.
+                Sorry, you didn’t pass the previous test. Please retake the test by clicking the button below. <br>
+                <span class="boldspan">Number of remaining attempts: </span>
+                <span class="redspan", id="RemainPracticeTime">2</span> 
             </p>
 
             <button id = "repractice-button">Practice again</button>
