@@ -59,7 +59,7 @@ function enterStartpage(data){
 	$(".block").css({ 'display': 'block'});
 	$(".instructions").css({ 'display': 'block'});
 	$(".game-instructions").css({ 'display': 'block' });
-	$(".game-instructions").text("Dear participant, thanks for taking part in our online memorability experiment. Please read the following information carefully and click the Practice button to begin our experiment.");
+	$(".game-instructions").text("Dear participant, thanks for taking part in our online memory game. Please read the following information carefully and click the Practice button to begin our practice game.");
 
 	globalWorkerObj.WorkerID = data.WorkerID;
 	globalWorkerObj.finishLevel = data.finishLevel;
@@ -350,7 +350,7 @@ function showBlock(blockParam){
 		$(".block-box").css({'display':'block'});
 		$('.feedbackImage').attr("src",'');
 		$('.visImage').attr("src",'');
-		$(".block-instructions").text("Sorry, according to our records, you have conducted our tests for three times and you didn’t pass. We regret that we can not let you participate in our game.");
+		$(".block-instructions").text("Sorry, according to our records, you have conducted our tests for three times and you didn’t pass. We regret that we cannot let you participate in our game.");
 	}
 	else if(blockParam == 4){
 		$(".workID-box").css({ 'display': 'none' });
