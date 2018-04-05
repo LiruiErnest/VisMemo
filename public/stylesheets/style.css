@@ -65,7 +65,8 @@ table {font-size: 1rem;
 .ordermemo .main-box .content-box .consent-box{position: absolute; left: 10%; top: 0%; width: 80%; height: 100%; background-color: #e6e6e6;
 	margin-left: auto; margin-right: auto;display: none; text-align: left}
 
-.ordermemo .main-box .content-box .consent-box .consent-instructions{text-align: center; top: 0%; padding: 0.4rem; position: relative;}
+.ordermemo .main-box .content-box .consent-box .consent-instructions{text-align: center; 
+	top: 0%;font-weight: bold; padding: 0.4rem; position: relative;}
 
 .ordermemo .main-box .content-box .consent-form-box{position: absolute; left: 5%; top: 5%; width: 90%; 
 	height: 80%; background-color: #ffffff; padding: 1rem;
@@ -85,22 +86,28 @@ table {font-size: 1rem;
 .ordermemo .main-box .content-box .demo-box{position: absolute; left: 10%; width: 80%; height: 100%; background-color: #e6e6e6;
 	margin-left: auto; margin-right: auto;display: none; text-align: left;}
 
-.ordermemo .main-box .content-box .demo-box .demo-p-box{position: relative; top: 15%; left: 10%; width:80%;}
+.ordermemo .main-box .content-box .demo-box .demo-p-box{position: relative; top: 15%; left: 10%; width:80%; line-height: 1.5rem;}
 
-.ordermemo .main-box .content-box .demo-box .demo-instructions{position: relative; top: 15%; line-height: 1.5rem}
+.ordermemo .main-box .content-box .demo-box .demo-instructions{position: relative; top: 10%; line-height: 1.5rem; text-align: center; font-weight: bold;
+padding: 0.4rem;}
 
-.ordermemo .main-box .content-box .table-box{width: 100%; height: 80%; position: relative; top: 5%;}
+.ordermemo .main-box .content-box .table-box{width: 80%; height: 60%; left: 10%; position: relative; top: 15%; line-height: 1.5rem;}
 
-.ordermemo .main-box .content-box .demo-box .demoTable{left: 10%; position: relative; width: 80%; height: 45%; top:20%;
+.ordermemo .main-box .content-box .demo-box .manda-demoTable{left: 0%; position: relative; width: 100%; height:70%; top:5%;
+border: 1px dashed #2c4e50; background:#ffffff;}
+
+.ordermemo .main-box .content-box .demo-box .demoTable{left: 0%; position: relative; width: 100%; height: 70%; top:5%;
 border: 1px dashed #2c4e50; background:#ffffff;}
 
 .ordermemo .main-box .content-box .demo-box .demoTR{height: 2rem; text-align: center;}
 
+#demoTableHR{height: 1rem;text-align: center;}
+
 .ordermemo .main-box .content-box .demo-box .demoTD{}
 
-#demoSubmit{height: 2rem; width: 10rem; border-radius: 0.2rem; 
+#demoSubmit{height: 2rem; width: 10rem; border-radius: 0.2rem; top:17%; position: relative;
 	background:#2C3E50; margin: 0 auto; text-align: center; border: none;
-	font-size: 0.9rem; color: #ffffff; cursor: pointer;top:92%; right: 30%; position: absolute;}
+	font-size: 0.9rem; color: #ffffff; cursor: pointer; display: block;}
 #demoSubmit:hover{background-color: #34495E}
 
 #demoSkip{height: 2rem; width: 10rem; border-radius: 0.2rem; 
@@ -111,12 +118,12 @@ border: 1px dashed #2c4e50; background:#ffffff;}
 #demowarning{position: absolute;width: 100%; text-align: center;top: 80%; display: none; color: red;}
 
 /*--------------------------------------------game-box------------------------------------------*/
-.ordermemo .main-box .content-box .game-box .game-instructions{position: relative; top: 20%; line-height: 1.5rem}
+.ordermemo .main-box .content-box .game-box .game-instructions{position: relative; text-align: center; top: 30%; line-height: 1.5rem}
 
 .ordermemo .main-box .content-box .game-box{position: absolute; left: 20%; width: 60%; height: 100%; background-color: #e6e6e6;
 	margin-left: auto; margin-right: auto;display: none}
 
-.ordermemo .main-box .content-box .game-box #start-practice{ height: 2.86rem; width: 10rem; top: 25%;
+.ordermemo .main-box .content-box .game-box #start-practice{ height: 2.86rem; width: 10rem; top: 35%;
 	border-radius: 0.2rem; position: relative; border: none;
 	background:#2C3E50; margin: 0 auto; text-align: center; 
 	font-size: 14px; color: #ffffff; cursor: pointer; }
@@ -127,7 +134,9 @@ border: 1px dashed #2c4e50; background:#ffffff;}
 .ordermemo .main-box .content-box .game-box .practice-instructions{text-align: left; line-height: 1.5rem; top: 20%; 
 left: 0%;width: 100%; position: relative; display: none}
 
-.ordermemo .main-box .content-box .game-box .realgame-instructions{text-align: left; line-height: 1.5rem; top: 10%; position: relative; display: none}
+.ordermemo .main-box .content-box .game-box .realgame-instructions{text-align: left; line-height: 1.5rem; top: 30%; position: relative; display: none}
+
+#rightNowLevel2{text-align: center; font-weight: bold; font-size: 1.2rem; position: relative;top: 30%;}
 
 .ordermemo .main-box .content-box .game-box .icon-box{text-align: center; top: 10%;position: relative; display: none;}
 

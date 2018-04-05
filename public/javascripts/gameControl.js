@@ -59,7 +59,7 @@ function enterStartpage(data){
 	$(".block").css({ 'display': 'block'});
 	$(".instructions").css({ 'display': 'block'});
 	$(".game-instructions").css({ 'display': 'block' });
-	$(".game-instructions").text("Dear participant, thanks for taking part in our online memory game. Please read the following information carefully and click the Practice button to begin our practice game.");
+	$(".game-instructions").text("Thanks for taking part in our online memory game. Please click the \"Practice\" button to begin.");
 
 	globalWorkerObj.WorkerID = data.WorkerID;
 	globalWorkerObj.finishLevel = data.finishLevel;
@@ -85,7 +85,7 @@ function enterStartpage(data){
 	$('#start-practice').unbind('click').click(function() {});
 	$("#start-practice").click(function(){
 		//test pass the practice
-		globalWorkerObj.isPracticeMode = 1;
+		globalWorkerObj.isPracticeMode = 0;
 		//globalWorkerObj.isPracticeMode = 1;
 		startGame();
 
@@ -163,7 +163,7 @@ function startGame(){
 
 	$(".loading").css({'display':'block'});
 	$(".game-name").css({'display':'none'});
-	$('.header-instructions').text("Instructions");
+	$('.header-instructions').text("Instruction");
 	//$('.header-instructions').text("Press the 'Space' key any time you see image you saw before");
 	$('.progress-bar').css({ 'display': 'block' });
 
@@ -281,7 +281,7 @@ function showPractice(practiceParam){
 	if(practiceParam == 1){
 		//if user pass the practice test
 		$('#practice-text').text("Congratulations! You passed the practice test. Please click the button below to enter the real game.");
-		$("#repractice-button").text("Go game");
+		$("#repractice-button").text("Start game");
 		$("#repractice-button").css({'display':'block'});
 		$('#repractice-button').unbind('click').click(function() {});
 		$("#repractice-button").click(function(){

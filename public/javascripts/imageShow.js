@@ -21,13 +21,13 @@ function preLoadImage(imageURLobj){
 	var imageCount;
 	if(globalWorkerObj.isPracticeMode == 1){
 		$('#rightNowLevel').css({'display':'none'});
-		imageCount = 30;
+		imageCount = 10;
 	}
 	else{
 		var levelnow = parseInt(globalWorkerObj.finishLevel) + 1;
 		$('#rightNowLevel').css({'display':'block'});
 		$('#rightNowLevel').text("Level: "+levelnow + "/17");
-		imageCount = 120;
+		imageCount = 10;
 		//imageCount = globalSequence[globalWorkerObj.finishLevel].length;
 	}
 
@@ -89,12 +89,18 @@ function readyGame(){
 	else{
 		//real game instruction
 		$(".realgame-instructions").css({'display':'block'});
-		var rightnowLevel = parseInt(globalWorkerObj.finishLevel)+1;
-		$("#rightNowLevel2").text("(Level "+rightnowLevel+")");
+		if(parseInt(globalWorkerObj.finishLevel) > 0){
+			$(".realgame-instructions").css({'display':'none'});
+			var rightnowLevel = parseInt(globalWorkerObj.finishLevel)+1;
+			$("#rightNowLevel2").css({'display':'block'});
+			$("#rightNowLevel2").text("Level "+rightnowLevel+"");
+		}
+		
 		$(".icon-box").css({'display':'block'});
 		$('.icon-box').css({'top':'10%'})
 		$(".practice-instructions").css({'display':'none'});
-		$('#begingame-button').css({'top':'15%'})
+		$(".icon-box").css({'display':'none'});		
+		$('#begingame-button').css({'top':'35%'})
 		
 	}
 	$("#begingame-button").css({ 'display': 'block' });
@@ -131,10 +137,10 @@ function imageShow(){
 	//=============check game mode=============
 	var imageCount;
 	if(globalWorkerObj.isPracticeMode == 1){
-		imageCount = 30;
+		imageCount = 10;
 	}
 	else{
-		imageCount = 120;		
+		imageCount = 10;		
 		//imageCount = globalSequence[globalWorkerObj.finishLevel].length;
 	}
 
@@ -291,7 +297,7 @@ function recordRepeat(index,level){
 		}
 		//check vigilance
 		globalVigilance.cursor++;
-		if(globalVigilance.cursor >= 30){
+		if(globalVigilance.cursor >= 5){
 			isWarning = checkWarning(globalVigilance.cursor,globalWorkerObj.finishLevel);
 		}
 	}
@@ -329,7 +335,7 @@ function recordState(index,level){
 		}
 		//check vigilance
 		globalVigilance.cursor++;
-		if(globalVigilance.cursor >= 30){
+		if(globalVigilance.cursor >= 5){
 			isWarning = checkWarning(globalVigilance.cursor,globalWorkerObj.finishLevel);
 		}
 	}
@@ -366,7 +372,7 @@ function checkWarning(cursor,level){
 
 	var isWarning = 0;
 
-	var start = cursor - 30;
+	var start = cursor - 5;
 	var faCount = 0;
 	for(var i = start; i < cursor; i++){
 		var imageID = globalVigilance.nonRepeatIndex[i];
@@ -374,7 +380,7 @@ function checkWarning(cursor,level){
 			faCount++;
 		}
 	}
-	if((faCount / 30).toFixed(2) > 0.5){
+	if((faCount / 5).toFixed(2) > 0.5){
 		//showWarning();
 		isWarning = 1;
 	}
