@@ -21,13 +21,13 @@ function preLoadImage(imageURLobj){
 	var imageCount;
 	if(globalWorkerObj.isPracticeMode == 1){
 		$('#rightNowLevel').css({'display':'none'});
-		imageCount = 10;
+		imageCount = 30;
 	}
 	else{
 		var levelnow = parseInt(globalWorkerObj.finishLevel) + 1;
 		$('#rightNowLevel').css({'display':'block'});
 		$('#rightNowLevel').text("Level: "+levelnow + "/17");
-		imageCount = 10;
+		imageCount = 120;
 		//imageCount = globalSequence[globalWorkerObj.finishLevel].length;
 	}
 
@@ -137,10 +137,10 @@ function imageShow(){
 	//=============check game mode=============
 	var imageCount;
 	if(globalWorkerObj.isPracticeMode == 1){
-		imageCount = 10;
+		imageCount = 30;
 	}
 	else{
-		imageCount = 10;		
+		imageCount = 120;		
 		//imageCount = globalSequence[globalWorkerObj.finishLevel].length;
 	}
 
@@ -297,7 +297,7 @@ function recordRepeat(index,level){
 		}
 		//check vigilance
 		globalVigilance.cursor++;
-		if(globalVigilance.cursor >= 5){
+		if(globalVigilance.cursor >= 30){
 			isWarning = checkWarning(globalVigilance.cursor,globalWorkerObj.finishLevel);
 		}
 	}
@@ -335,7 +335,7 @@ function recordState(index,level){
 		}
 		//check vigilance
 		globalVigilance.cursor++;
-		if(globalVigilance.cursor >= 5){
+		if(globalVigilance.cursor >= 30){
 			isWarning = checkWarning(globalVigilance.cursor,globalWorkerObj.finishLevel);
 		}
 	}
@@ -372,7 +372,7 @@ function checkWarning(cursor,level){
 
 	var isWarning = 0;
 
-	var start = cursor - 5;
+	var start = cursor - 30;
 	var faCount = 0;
 	for(var i = start; i < cursor; i++){
 		var imageID = globalVigilance.nonRepeatIndex[i];
@@ -380,7 +380,7 @@ function checkWarning(cursor,level){
 			faCount++;
 		}
 	}
-	if((faCount / 5).toFixed(2) > 0.5){
+	if((faCount / 30).toFixed(2) > 0.5){
 		//showWarning();
 		isWarning = 1;
 	}
