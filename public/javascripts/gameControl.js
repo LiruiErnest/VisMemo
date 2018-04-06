@@ -145,7 +145,10 @@ function startPractice(){
 
 	$(".loading").css({'display':'block'});
 	$(".game-name").css({'display':'none'});
-	$('.header-instructions').text("Press the 'Space' bar any time you see an image you saw before");
+	//hide header
+	$(".header-instructions").css({'display':'none'});
+	$(".header-instructions-game").css({'display':'block'});
+	$('.header-instructions-game').text("Press the 'Space' bar immediately after you see an image you saw before.");
 	$('.progress-bar').css({ 'display': 'block' });
 	
 }
@@ -163,6 +166,8 @@ function startGame(){
 
 	$(".loading").css({'display':'block'});
 	$(".game-name").css({'display':'none'});
+	$(".header-instructions").css({'display':'block'});
+	$(".header-instructions-game").css({'display':'none'});
 	$('.header-instructions').text("Instruction");
 	//$('.header-instructions').text("Press the 'Space' key any time you see image you saw before");
 	$('.progress-bar').css({ 'display': 'block' });
@@ -199,6 +204,8 @@ function TimeClose() {
 //show Feedback page
 function levelSummary(){
 	//show summary dataset
+	$(".header-instructions").css({'display':'block'});
+	$(".header-instructions-game").css({'display':'none'});
 	$('.header-instructions').text("Summary");
 	$(".game-box").css({ 'display': 'none' });
 	$(".summary-box").css({'display':'block'});
@@ -281,7 +288,7 @@ function showPractice(practiceParam){
 	if(practiceParam == 1){
 		//if user pass the practice test
 		$('#practice-text').text("Congratulations! You passed the practice test. Please click the button below to enter the real game.");
-		$("#repractice-button").text("Start game");
+		$("#repractice-button").text("Start");
 		$("#repractice-button").css({'display':'block'});
 		$('#repractice-button').unbind('click').click(function() {});
 		$("#repractice-button").click(function(){

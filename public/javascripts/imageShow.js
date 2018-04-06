@@ -76,7 +76,9 @@ function readyGame(){
 	$(".loading").css({'display':'none'});
 	$(".game-box").css({'display':'block'});
 	$(".imageContainer").css({'display':'none'});
-	$(".header-instructions").text("Instructions");
+	$(".header-instructions").css({'display':'block'});
+	$(".header-instructions-game").css({'display':'none'});
+	$(".header-instructions").text("Instruction");
 	
 	//before instruction set up
 	if(globalWorkerObj.isPracticeMode == 1){
@@ -124,7 +126,9 @@ function imageShow(){
 	$("#begingame-button").css({ 'display': 'none' });
 	$(".imageContainer").css({'display':'block'});
 	$('.shader').css({'width':'0%'});    //reset the progress bar
-	$('.header-instructions').text("Press the 'Space' bar any time you see an image you saw before");
+	$(".header-instructions").css({'display':'none'});
+	$(".header-instructions-game").css({'display':'block'});
+	$('.header-instructions-game').text("Press the 'Space' bar immediately after you see an image you saw before.");
 	
 	//param set-up
 	var showTime = 1000;
@@ -342,6 +346,7 @@ function recordState(index,level){
 	else{
 		//if participant see this image for second time
 		if(globalSequence[level][index][2] == 0){
+			$('.feedbackImage').attr("src",'/images/warning.png');
 			//filler miss
 			globalSequence[level][index][3] = 2;
 		}

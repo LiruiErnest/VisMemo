@@ -25,6 +25,7 @@ table {font-size: 1rem;
 	margin-left: auto; margin-right: auto;}
 
 .ordermemo .main-box .header-box .header-instructions{text-align: center; top: 0%; padding: 0.4rem; position: relative; font-weight: bold;}
+.ordermemo .main-box .header-box .header-instructions-game{text-align: center; top: 0%; padding: 0.4rem; position: relative; font-weight: normal;}
 
 
 /*------------------------------------------content-box-------------------------------------------*/
@@ -94,10 +95,10 @@ padding: 0.4rem;}
 .ordermemo .main-box .content-box .table-box{width: 80%; height: 60%; left: 10%; position: relative; top: 15%; line-height: 1.5rem;}
 
 .ordermemo .main-box .content-box .demo-box .manda-demoTable{left: 0%; position: relative; width: 100%; height:70%; top:5%;
-border: 1px dashed #2c4e50; background:#ffffff;}
+}
 
 .ordermemo .main-box .content-box .demo-box .demoTable{left: 0%; position: relative; width: 100%; height: 70%; top:5%;
-border: 1px dashed #2c4e50; background:#ffffff;}
+/*border: 1px dashed #2c4e50; background:#ffffff;*/}
 
 .ordermemo .main-box .content-box .demo-box .demoTR{height: 2rem; text-align: center;}
 
@@ -134,15 +135,17 @@ border: 1px dashed #2c4e50; background:#ffffff;}
 .ordermemo .main-box .content-box .game-box .practice-instructions{text-align: left; line-height: 1.5rem; top: 20%; 
 left: 0%;width: 100%; position: relative; display: none}
 
-.ordermemo .main-box .content-box .game-box .realgame-instructions{text-align: left; line-height: 1.5rem; top: 30%; position: relative; display: none}
+.ordermemo .main-box .content-box .game-box .realgame-instructions{text-align: left; line-height: 1.5rem; top: 5%; position: relative; display: none}
 
-#rightNowLevel2{text-align: center; font-weight: bold; font-size: 1.2rem; position: relative;top: 30%;}
+#rightNowLevel2{text-align: center; font-weight: bold; font-size: 1.0rem; position: relative;top: 30%;}
 
 .ordermemo .main-box .content-box .game-box .icon-box{text-align: center; top: 10%;position: relative; display: none;}
 
 .ordermemo .main-box .content-box .game-box .instru-correct-img{width: 2rem; height: 2rem}
 
 .ordermemo .main-box .content-box .game-box .instru-false-img{width: 1.6rem; height: 1.6rem}
+
+.ordermemo .main-box .content-box .game-box .instru-warning-img{width: 1.6rem; height: 1.6rem}
 
 #begingame-button{height: 2rem; width: 7rem; border-radius: 0.2rem; top:40%; position: relative;
 	background:#2C3E50; margin: 0 auto;  text-align: center; border: none;
