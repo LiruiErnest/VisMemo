@@ -67,8 +67,13 @@ function insertUser(workerID){
     
     //console.log(workerID);
 
-    var errorCount = 0;
-    if(($('#genderSelect').val() != '') && $('input[name=visualRate]').is(':checked') != false && isValidAge($('#age-text').val())){
+    //var errorCount = 0;
+    var condition = (isGenderSelected() 
+        && isVisualRate() 
+        && isVisionNormal()
+        && isValidAge($('#age-text').val()));
+
+    if(condition){
 
         var newWorker = {
             'Age': $('#age-text').val(),
@@ -111,15 +116,6 @@ function insertUser(workerID){
         });
         $('#demowarning').css({'display':'none'});
 
-    }
-    else{
-        if(isValidAge($('#age-text').val())){
-            $('#demowarning').text("Please fill in all fields with * !");
-            $('#demowarning').css({'display':'block'});
-        }
-        else{
-            isValidAge($('#age-text').val());
-        }       
     }
 }
 

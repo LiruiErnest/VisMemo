@@ -30,7 +30,7 @@ function generateGamesquence(){
 	}
 	//console.log(imageInfoArr);
 
-	//寻找每个level中的target，生成repeat
+	//search target of each level，generate repeat
 	for(var i = 0; i < levelCount; i++){
 		//target number 
 		for(var j = 0; j < levelImageCount; j++){
@@ -53,7 +53,7 @@ function generateGamesquence(){
 
 	
 
-	//设立vigilance repeat image
+	//setting up vigilance repeat image
 	for(var i = 0; i < levelCount; i++){
 		for(var j = 0; j < levelImageCount; j++){
 			//if this image is a filler image
@@ -94,4 +94,11 @@ function generateGamesquence(){
 	//console.log(imageInfoArr);
 
 	return imageInfoArr;
+}
+
+
+
+//generate score ordered sequence
+function generateScoreOrderSequence(){
+	
 }

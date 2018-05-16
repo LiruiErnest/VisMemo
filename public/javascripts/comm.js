@@ -73,24 +73,42 @@ function isValidAge(age){
     }  
 }
 
+//check if user has normal vision
+function isVisionNormal(){
+    if($('input[name=visionState]:checked').val() == '0'){
+        $('#demowarning').text("You must have a normal and corrected vision to participate in our game!");
+        return false;
+    }
+    else if($('input[name=visionState]:checked').val() == '1'){
+        $('#demowarning').css({'display':'none'});
+        return true;
+    }
+    else{
+        $('#demowarning').text("Please fill in all fields with * !");
+        $('#demowarning').css({'display':'block'});
+        return false;
+    }
+}
 
+function isVisualRate(){
+    if($('input[name=visualRate]').is(':checked') != false ){
+        return true;
+    }
+    else{
+        $('#demowarning').text("Please fill in all fields with * !");
+        return false;
+    }
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+function isGenderSelected(){
+    if($('#genderSelect').val() != ''){
+        return true;
+    }
+    else{
+        $('#demowarning').text("Please fill in all fields with * !");
+        return false;
+    }
+}
 
 
 
