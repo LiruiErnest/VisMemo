@@ -299,7 +299,7 @@ function showPractice(practiceParam){
 	}
 	else if(practiceParam == 2){
 		//if user never passed the practice and failed
-		console.log("practice fail");
+		//console.log("practice fail");
 		var remainTimes = 3 - parseInt(globalWorkerObj.practiceTimes);
 		$('#RemainPracticeTime').text(remainTimes);
 		$("#repractice-button").css({'display':'block'});
