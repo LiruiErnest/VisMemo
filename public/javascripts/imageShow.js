@@ -46,7 +46,9 @@ function preLoadImage(imageURLobj){
 			$('.shader').css({'width':'70%'});
 			//initialize the vigilance variable
 			globalVigilance.nonRepeatIndex = new Array();
-			globalVigilance.cursor = 0;
+			globalVigilance.RepeatIndex = new Array();
+			globalVigilance.cursor = 0;   //non-vigilance image cursor
+			globalVigilance.scursor = 0;  //vigilance image cursor
 			getVigilance(globalWorkerObj.finishLevel);
 			//go to ready to page()
 			readyGame();
@@ -301,6 +303,7 @@ function recordRepeat(index,level){
 		}
 		//check vigilance
 		globalVigilance.cursor++;
+
 		if(globalVigilance.cursor >= 30){
 			isWarning = checkWarning(globalVigilance.cursor,globalWorkerObj.finishLevel);
 		}
@@ -315,6 +318,12 @@ function recordRepeat(index,level){
 		else{
 			//target hits
 			globalSequence[level][index][3] = 5;
+		}
+		//check success vigilance
+		globalVigilance.scursor++;
+		//console.log(globalVigilance.scursor);
+		if(globalVigilance.scursor >= 10){
+			isWarning = checkSWarning(globalVigilance.scursor,globalWorkerObj.finishLevel);
 		}
 	}
 
@@ -338,7 +347,7 @@ function recordState(index,level){
 			globalSequence[level][index][3] = 8;
 		}
 		//check vigilance
-		globalVigilance.cursor++;
+		//globalVigilance.cursor++;
 		if(globalVigilance.cursor >= 30){
 			isWarning = checkWarning(globalVigilance.cursor,globalWorkerObj.finishLevel);
 		}
@@ -353,6 +362,12 @@ function recordState(index,level){
 		else{
 			//target miss
 			globalSequence[level][index][3] = 6;
+		}
+		//check success vigilance
+		globalVigilance.scursor++;
+		//console.log(globalVigilance.scursor);
+		if(globalVigilance.scursor >= 10){
+			isWarning = checkSWarning(globalVigilance.scursor,globalWorkerObj.finishLevel);
 		}
 	}
 
@@ -369,10 +384,13 @@ function getVigilance(level){
 		if(globalSequence[level][i][1] == 0){
 			globalVigilance.nonRepeatIndex.push(i);
 		}
+		else if(globalSequence[level][i][1] == 1 && globalSequence[level][i][2] == 0){
+			globalVigilance.RepeatIndex.push(i);
+		}
 	}
 }
 
-
+//vigilance check: false alarm rate
 function checkWarning(cursor,level){
 
 	var isWarning = 0;
@@ -389,6 +407,31 @@ function checkWarning(cursor,level){
 		//showWarning();
 		isWarning = 1;
 	}
+	
+	return isWarning;
+}
+
+//vigilance check: success rate
+function checkSWarning(cursor,level){
+
+	var isWarning = 0;
+
+	var start = cursor - 10;
+	var hitCount = 0;
+	for(var i = start; i < cursor; i++){
+		var imageID = globalVigilance.RepeatIndex[i];
+		if(globalSequence[level][imageID][3] == 1 || globalSequence[level][imageID][3] == 5){
+			hitCount++;
+		}
+	}
+
+	//console.log(hitCount);
+
+	if((hitCount / 10).toFixed(2) < 0.5){
+		//showWarning();
+		isWarning = 1;
+	}
+
 	return isWarning;
 }
 

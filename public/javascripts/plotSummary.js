@@ -147,7 +147,7 @@ function plotReward(){
 		.range([0,width]);
 
 	var rewardScale = d3.scaleLinear()
-		.domain([0,13.6])
+		.domain([0,6.8])
 		.range([height,0]);
 
 	var nowLevel = new Array();
@@ -160,7 +160,7 @@ function plotReward(){
 			return levelScale(d);
 		})
 		.y(function(d,i){
-			var reward = 0.8 * d;
+			var reward = 0.4 * d;
 			return rewardScale(reward);
 		})
 
@@ -209,7 +209,7 @@ function plotReward(){
 		.attr('d', lineback)
 
 	var textX = levelScale(parseInt(globalWorkerObj.finishLevel)) + 40;
-	var textY = rewardScale(parseInt(globalWorkerObj.finishLevel) * 0.8) + 30;
+	var textY = rewardScale(parseInt(globalWorkerObj.finishLevel) * 0.4) + 30;
 	
 	rewardSvg.append("text")
       .attr("fill", "#1ABC9C")
@@ -218,7 +218,7 @@ function plotReward(){
       .attr("dy", "0.71em")
       .attr("text-anchor", "end")
       .text(function(){
-      	var nowreward = (0.8 * parseInt(globalWorkerObj.finishLevel)).toFixed(2);
+      	var nowreward = (0.4 * parseInt(globalWorkerObj.finishLevel)).toFixed(2);
       	return '$'+nowreward;
       });
 
