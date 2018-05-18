@@ -27,7 +27,7 @@ function preLoadImage(imageURLobj){
 		var levelnow = parseInt(globalWorkerObj.finishLevel) + 1;
 		$('#rightNowLevel').css({'display':'block'});
 		$('#rightNowLevel').text("Level: "+levelnow + "/17");
-		imageCount = 10;
+		imageCount = 120;
 		//imageCount = globalSequence[globalWorkerObj.finishLevel].length;
 	}
 
@@ -147,7 +147,7 @@ function imageShow(){
 		imageCount = 30;
 	}
 	else{
-		imageCount = 10;		
+		imageCount = 120;		
 		//imageCount = globalSequence[globalWorkerObj.finishLevel].length;
 	}
 
