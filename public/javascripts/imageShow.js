@@ -27,7 +27,7 @@ function preLoadImage(imageURLobj){
 		var levelnow = parseInt(globalWorkerObj.finishLevel) + 1;
 		$('#rightNowLevel').css({'display':'block'});
 		$('#rightNowLevel').text("Level: "+levelnow + "/17");
-		imageCount = 120;
+		imageCount = 10;
 		//imageCount = globalSequence[globalWorkerObj.finishLevel].length;
 	}
 
@@ -125,6 +125,7 @@ function imageShow(){
 	$(".realgame-instructions").css({'display':'none'});
 	$(".practice-instructions").css({'display':'none'});
 	$(".icon-box").css({'display':'none'});
+	$("#rightNowLevel2").css({'display':'none'});
 	$("#begingame-button").css({ 'display': 'none' });
 	$(".imageContainer").css({'display':'block'});
 	$('.shader').css({'width':'0%'});    //reset the progress bar
@@ -146,7 +147,7 @@ function imageShow(){
 		imageCount = 30;
 	}
 	else{
-		imageCount = 120;		
+		imageCount = 10;		
 		//imageCount = globalSequence[globalWorkerObj.finishLevel].length;
 	}
 

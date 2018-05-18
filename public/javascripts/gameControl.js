@@ -85,7 +85,7 @@ function enterStartpage(data){
 	$('#start-practice').unbind('click').click(function() {});
 	$("#start-practice").click(function(){
 		//test pass the practice
-		globalWorkerObj.isPracticeMode = 1;
+		globalWorkerObj.isPracticeMode = 0;
 		//globalWorkerObj.isPracticeMode = 1;
 		startGame();
 
