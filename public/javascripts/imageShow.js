@@ -314,6 +314,7 @@ function recordRepeat(index,level){
 		//if participant see this image for second time
 		if(globalSequence[level][index][2] == 0){
 			//filler hits
+			globalVigilance.scursor++;
 			globalSequence[level][index][3] = 1;
 		}
 		else{
@@ -321,7 +322,6 @@ function recordRepeat(index,level){
 			globalSequence[level][index][3] = 5;
 		}
 		//check success vigilance
-		globalVigilance.scursor++;
 		//console.log(globalVigilance.scursor);
 		if(globalVigilance.scursor >= 10){
 			isWarning = checkSWarning(globalVigilance.scursor,globalWorkerObj.finishLevel);
@@ -357,7 +357,8 @@ function recordState(index,level){
 		//if participant see this image for second time
 		if(globalSequence[level][index][2] == 0){
 			$('.feedbackImage').attr("src",'/images/warning.png');
-			//filler miss
+			//filler miss			
+			globalVigilance.scursor++;
 			globalSequence[level][index][3] = 2;
 		}
 		else{
@@ -365,7 +366,6 @@ function recordState(index,level){
 			globalSequence[level][index][3] = 6;
 		}
 		//check success vigilance
-		globalVigilance.scursor++;
 		//console.log(globalVigilance.scursor);
 		if(globalVigilance.scursor >= 10){
 			isWarning = checkSWarning(globalVigilance.scursor,globalWorkerObj.finishLevel);
