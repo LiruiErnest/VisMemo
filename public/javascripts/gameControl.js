@@ -15,8 +15,6 @@ $(document).ready(function() {
 		checkUserExist();
 	});
 
-
-
 });
 
 
@@ -175,7 +173,13 @@ function startGame(){
 	//check user's status, level
 	var level = globalWorkerObj.finishLevel;
 	//obtain the image sequence
-	globalSequence = generateGamesquence();
+	if(globalWorkerObj.isPracticeMode == 1){
+		globalSequence = generateGamesquence(1);
+	}
+	else{
+		globalSequence = generateGamesquence();
+	}
+
 
 	//get url from database and begin the game
 	getImageUrl(globalSequence[globalWorkerObj.finishLevel]);
@@ -210,8 +214,8 @@ function levelSummary(){
 	$(".game-box").css({ 'display': 'none' });
 	$(".summary-box").css({'display':'block'});
 
-	plotReward();
-	plotScore();
+	//plotReward();
+	//plotScore();
 
 	countTime = 300;
 	TimeCount();

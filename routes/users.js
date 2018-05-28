@@ -52,7 +52,7 @@ router.put('/updateworkerlab',function(req,res){
     setArgs['finishLevel'] = nextlevel;
     setArgs['performance'] = performance;
 
-    if(parseInt(nextlevel) == 17){
+    if(parseInt(nextlevel) == 1){
         setArgs['isBlocked'] = 1;
     }
 

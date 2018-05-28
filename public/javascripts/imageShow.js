@@ -58,7 +58,9 @@ function preLoadImage(imageURLobj){
 	for(var i = 0;i < imageCount;i++){
 		var imageID = 'I' + globalSequence[globalWorkerObj.finishLevel][i][0];
 		images[i] = new Image()
+		//console.log(imageID);
 		images[i].src = imageURLobj[imageID];
+		//console.log(imageURLobj[imageID])
 		images[i].onload = function(){
 			imageloadpost();
 		}

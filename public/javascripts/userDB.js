@@ -24,7 +24,7 @@ function checkUserExist(){
                 //if the user has been blocked
                 if(parseInt(data.msg[0].isBlocked) == 1){
                     //if finished all levels:
-                    if(parseInt(data.msg[0].finishLevel) == 17){
+                    if(parseInt(data.msg[0].finishLevel) == 1){
                         showBlock(4);
                     }
                     else if(parseInt(data.msg[0].warningTimes) == 3){
