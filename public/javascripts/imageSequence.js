@@ -96,7 +96,7 @@ function generateGamesquence(ispractice){
 			if(imageInfoArr[i][j][0] >= fillerCount - 1){				
 				imageInfoArr[i][j][2] = 1;
 				//if this target image can be repeat
-				if(j <= levelImageCount - targetSpacingMin - 1){
+				if(j <= levelImageCount - targetSpacingMin - 1 && imageInfoArr[i][j][1] != 1){
 					var k = j + _.random(targetSpacingMin, 
 					(levelImageCount - j - 1)> targetSpacingMax ? targetSpacingMax : levelImageCount - j - 1);  //still to be debate
 					//var space = k - j;
