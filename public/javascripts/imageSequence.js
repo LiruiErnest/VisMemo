@@ -101,9 +101,11 @@ function generateGamesquence(ispractice){
 					(levelImageCount - j - 1)> targetSpacingMax ? targetSpacingMax : levelImageCount - j - 1);  //still to be debate
 					//var space = k - j;
 					//console.log(space);
-					imageInfoArr[i][k][0] = imageInfoArr[i][j][0];  //repeat image
-					imageInfoArr[i][k][1] = 1;
-					imageInfoArr[i][k][2] = 1;
+					if(imageInfoArr[i][k][1] != 1){
+						imageInfoArr[i][k][0] = imageInfoArr[i][j][0];  //repeat image
+						imageInfoArr[i][k][1] = 1;
+						imageInfoArr[i][k][2] = 1;
+					}					
 				}
 			}
 		}
