@@ -52,7 +52,7 @@ router.put('/updateworkerlab',function(req,res){
     setArgs['finishLevel'] = nextlevel;
     setArgs['performance'] = performance;
 
-    if(parseInt(nextlevel) == 17){
+    if(parseInt(nextlevel) == 1){
         setArgs['isBlocked'] = 1;
     }
 
@@ -119,5 +119,31 @@ router.put('/updateworkerpractice',function(req,res){
         );
     });
 });
+
+//update the subResult of a worker
+router.put('/updateworkersubresult',function(req,res){
+    var db = req.db;
+    var collection = db.get('user');
+    
+    var WorkerID = req.body.WorkerID;
+    //var level = req.body.level;
+    var subResult = req.body.subResult;
+    // create the object literal
+
+    var setArgs = {};
+    //console.log(WorkerID,subResult);
+    setArgs['subResult'] = subResult;
+   
+    var condition = {$set:setArgs};
+
+    collection.find
+
+    collection.findOneAndUpdate({'WorkerID':WorkerID},condition, function(err, result){
+        res.send(
+            (err === null) ? { msg: result} : { msg: err }
+        );
+    });
+});
+
 
 module.exports = router;

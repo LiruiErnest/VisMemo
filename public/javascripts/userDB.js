@@ -24,7 +24,7 @@ function checkUserExist(){
                 //if the user has been blocked
                 if(parseInt(data.msg[0].isBlocked) == 1){
                     //if finished all levels:
-                    if(parseInt(data.msg[0].finishLevel) == 17){
+                    if(parseInt(data.msg[0].finishLevel) == 1){
                         showBlock(4);
                     }
                     else if(parseInt(data.msg[0].warningTimes) == 3){
@@ -90,7 +90,8 @@ function insertUser(workerID){
         ,'L11':'','L12':'','L13':'','L14':'','L15':'','L16':''},
             'practiceTimes':0,
             'warningTimes':0,
-            'performance':''
+            'performance':'',
+            'subResult':''
         }
 
         $.ajax({
@@ -141,12 +142,36 @@ function updateUser(workerID,labResult,level,performance){
             globalWorkerObj.code = data.msg[codelevel];
             globalWorkerObj.finishLevel = parseInt(globalWorkerObj.finishLevel) + 1;
             //enter feedback page and ready to next level
-            levelSummary();
+            showEvaluation();
+            //levelSummary();
         },
         error:function(data){
             
         }
     }); 
+}
+
+//insert user subjective comment on images
+function updateSubComment(workerID,subResult){
+
+    var dataJson = {
+            'subResult': subResult,
+            'WorkerID':workerID,
+        }
+    //console.log(globalSubResult);
+    $.ajax({
+        type:"PUT",
+        data:dataJson,
+        url:'users/updateworkersubresult',
+        dataType: 'JSON',
+        success:function(data){
+            showNextEvaluation();
+        },
+        error:function(data){
+            
+        }
+    }); 
+
 }
 
 //update a worker's practiceStatus

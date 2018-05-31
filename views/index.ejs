@@ -3,15 +3,23 @@
 <head>
     <title>VisMemo</title>
     <link rel='stylesheet' href='/stylesheets/style.css'/>
+    
+    <!-- <link rel="stylesheet" type="text/css" href="/stylesheets/bootstrap.min.css"> -->
     <!-- <link rel='stylesheet' href='/stylesheets/style-white.css'/> -->
 
 </head>
 <body class="ordermemo">
+
 <script type="text/javascript" src="/lib/d3.min.js"></script>
 <script type="text/javascript" src="/lib/underscore-min.js"></script>
 <script type="text/javascript" src="/lib/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="/lib/country-state-select.js"></script>
 <script type="text/javascript" src="/lib/d3-tip.js"></script>
+
+<!-- <script src="http://code.jquery.com/jquery-3.1.0.slim.min.js"></script> -->
+
+
+<!-- <script type="text/javascript" src="/lib/bootstrap.min.js"></script> -->
 
 <script type="text/javascript" src="/javascripts/gameControl.js"></script>
 <script type="text/javascript" src="/javascripts/internal.js"></script>
@@ -22,6 +30,7 @@
 <script type="text/javascript" src="/javascripts/imageShow.js"></script>
 <script type="text/javascript" src="/javascripts/dataAnalysis.js"></script>
 <script type="text/javascript" src="/javascripts/plotSummary.js"></script>
+<script type="text/javascript" src="/javascripts/evaluate.js"></script>
 
 <div class="main-box">
 
@@ -216,15 +225,17 @@
             </p>
 
 
-            <p class="realgame-instructions">Each level of this real game contains 120 images. It will take about 5 minutes to complete a level. 
+            <p class="realgame-instructions">This real game contains 120 images. It will take about 6 minutes to complete. 
 
-            You will be paid <span class="boldspan">$0.40 per complete level</span>. Depending on availability and performance, you may be able to complete <span class="boldspan">multiple levels </span>(<span class="boldspan">17</span> levels total.)
-            You will get a reward code after each level and <span class="boldspan">bonus</span> if you are scored above 95%.
+            You will be paid <span class="boldspan">$0.40 for this game and $0.10 for a simple evaluation task</span>. 
+            <!-- Depending on availability and performance, you may be able to complete <span class="boldspan">multiple levels </span>(<span class="boldspan">17</span> levels total.) -->
+            You will get a reward code after game and <span class="boldspan">bonus</span> if you are scored above 95%.
 
+            <br><br>
             <br><br>
 
 
-            After each level, you will find a summary of your performance.<br><br>
+            <!--   After each level, you will find a summary of your performance.<br><br> -->
 
             </p>
 
@@ -267,18 +278,63 @@
 
         </div>
 
+
+        <div class="evaluate-box">
+            
+            <div class="eva-box">
+                <img class="eva-img" src="">
+            </div>
+
+            <div class="eva-item">
+                <span class="boldspan">Are the objects in the scene look familiar to you?</span>               
+                <br>
+                <input id="familiarity" class="rangeSlide" type="range" min="1" max="7" value="1" />
+                <br>
+                <span>Disagree &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Agree</span>
+                <br><br>
+                <span class="boldspan">Is the image colorful?</span>               
+                <br>
+                <input id="colorful" class="rangeSlide" type="range" min="1" max="7" value="1" />
+                <br>
+                <span>Not colorful &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Very colorful</span>
+                <br><br>
+                <span class="boldspan">How happy does this image make you?</span>               
+                <br>
+                <input id="happy" class="rangeSlide" type="range" min="1" max="7" value="1" />
+                <br>
+                <span>Very unhappy&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Very Happy</span>
+                <br><br>
+                <span class="boldspan">This is an image of:</span>               
+                <br>
+                <input id="layout" class="rangeSlide" type="range" min="1" max="7" value="1" />
+                <br>
+                <span>Neat space &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cluttered space</span>
+                <br><br>
+                <span class="boldspan">Is the image interesting?</span>               
+                <br>
+                <input id="interesting" class="rangeSlide" type="range" min="1" max="7" value="1" />
+                <br>
+                <span>Disagree &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Agree</span>
+                <br><br>
+            </div>
+
+            <button class="eva-button" id="eva-next">Next</button>
+
+
+        </div>
+
         <!-- show summary information -->
         <div class="summary-box">
 
-            <p id="summary-level">Level
+            <!-- <p id="summary-level">Level
                 <span id="summary-nowlevel"> 9 </span>
                 out of 17 completed!
-            </p>
+            </p> -->
 
             <p id="summary-rest-time">               
                 <span id="summary-time">Rest time remaining: 4:59 </span> <br>
-                <span id="summary-time-note">(Game will automatically end if you do not press "start next level" before the rest time is up.)</span> <br>
-                Note: You only need to provide the <span class="redspan">reward code of first level </span> on Amazon Turk! (Please submit it as soon as possible) The rest of your completed levels will be rewarded by <span class="redspan">bonus</span> option.
+                <span id="summary-time-note">(Game will automatically end when the rest time is up.)</span> <br>
+                Note: You only need to provide the <span class="redspan">reward code below</span> on Amazon Mechanical Turk! (Please submit it as soon as possible).
             </p>
 
             <p id="summary-code"><br>
@@ -286,20 +342,20 @@
                 <span id=levelcode></span>
             </p>
 
-            <p id="summary-instruction">
+            <!-- <p id="summary-instruction">
                 Mouse-over the dots on the left chart will show your score at each level.
-            </p>
+            </p> -->
 
-            <div id="summary-chart">
+            <!-- <div id="summary-chart">
                 <div id="level-chart">
                     
                 </div>
                 <div id="reward-chart">
                     
                 </div>
-            </div>
+            </div> -->
 
-            <button id = "nextlevel-button">Start next level</button>   
+            <!-- <button id = "nextlevel-button">Start next level</button>    -->
             <button id = "summary-exit-button">Exit</button>      
 
         </div>
@@ -332,6 +388,10 @@
             
         </div>
 
+        <div class="eva">
+            
+        </div>
+
 
     </div>
 
@@ -342,7 +402,7 @@
             <table style="width: 100%; height: 100%; position: relative;">
                 <tr>
                     <td style="width: 10%; text-align: center;" >
-                        <span style="font-weight: bold" id="rightNowLevel">Level:1/17</span>
+                        <!-- <span style="font-weight: bold" id="rightNowLevel">Level:1/17</span> -->
                     </td>
                     <td style="width: 10%; text-align: center;">
                         <label class="bar-label">Progress</label>
@@ -367,5 +427,8 @@
 
 </div>
 
+
+
 </body>
+
 </html>
