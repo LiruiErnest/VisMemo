@@ -6,7 +6,7 @@ function plotScore(){
 	var width = 250;
 	var height = 220;
 	var level = new Array();
-	for(var i = 0;i < 17;i++){
+	for(var i = 0;i < 5;i++){
 		level[i] = i+1;
 	}
 
@@ -138,7 +138,7 @@ function plotReward(){
 	var width = 250;
 	var height = 220;
 	var level = new Array();
-	for(var i = 0;i <= 17;i++){
+	for(var i = 0;i <= 5;i++){
 		level[i] = i;
 	}
 
@@ -147,7 +147,7 @@ function plotReward(){
 		.range([0,width]);
 
 	var rewardScale = d3.scaleLinear()
-		.domain([0,6.8])
+		.domain([0,2])
 		.range([height,0]);
 
 	var nowLevel = new Array();

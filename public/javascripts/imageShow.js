@@ -26,7 +26,7 @@ function preLoadImage(imageURLobj){
 	else{
 		var levelnow = parseInt(globalWorkerObj.finishLevel) + 1;
 		$('#rightNowLevel').css({'display':'block'});
-		$('#rightNowLevel').text("Level: "+levelnow + "/17");
+		$('#rightNowLevel').text("Level: "+levelnow + "/5");
 		imageCount = 120;
 		//imageCount = globalSequence[globalWorkerObj.finishLevel].length;
 	}
@@ -226,6 +226,7 @@ function imageShow(){
 				if(parseInt(globalWorkerObj.finishLevel) > 0){
 					historyPerformance = globalWorkerObj.performance + ',' + historyPerformance;
 				}
+				$(".feedbackImage").css({'display':'none'});
 				updateUser(globalWorkerObj.WorkerID,userlog,globalWorkerObj.finishLevel,historyPerformance);
 			}
 			else{

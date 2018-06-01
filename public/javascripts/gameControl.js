@@ -323,11 +323,11 @@ function levelSummary() {
     $(".summary-box").css({
         'display': 'block'
     });
-    //plotReward();
-    //plotScore();
+    plotReward();
+    plotScore();
     countTime = 300;
     TimeCount();
-    // $('#summary-nowlevel').text(parseInt(globalWorkerObj.finishLevel));
+    $('#summary-nowlevel').text(parseInt(globalWorkerObj.finishLevel));
     $("#levelcode").text(globalWorkerObj.code);
     jumpNextLevel();
 }
@@ -339,7 +339,7 @@ function jumpNextLevel() {
         returnToMain();
     });
     //if level < 17
-    if (parseInt(globalWorkerObj.finishLevel) < 17) {
+    if (parseInt(globalWorkerObj.finishLevel) < 5) {
         //go to other level
         $("#nextlevel-button").css({
             'display': 'block'
@@ -354,7 +354,10 @@ function jumpNextLevel() {
         });
     }
     //block user, will not use database, just use finishLevel is ok
-    if (globalWorkerObj.finishLevel == 17) {
+    if (globalWorkerObj.finishLevel == 5) {
+        $("#nextlevel-button").css({
+            'display': 'none'
+        });
         $('#summary-rest-time').text("Congratulations! You have finished all levels of our game!");
         //showBlock(4);
         //console.log("byebye");

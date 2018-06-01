@@ -24,7 +24,7 @@ function checkUserExist(){
                 //if the user has been blocked
                 if(parseInt(data.msg[0].isBlocked) == 1){
                     //if finished all levels:
-                    if(parseInt(data.msg[0].finishLevel) == 1){
+                    if(parseInt(data.msg[0].finishLevel) == 5){
                         showBlock(4);
                     }
                     else if(parseInt(data.msg[0].warningTimes) == 3){
@@ -142,8 +142,8 @@ function updateUser(workerID,labResult,level,performance){
             globalWorkerObj.code = data.msg[codelevel];
             globalWorkerObj.finishLevel = parseInt(globalWorkerObj.finishLevel) + 1;
             //enter feedback page and ready to next level
-            showEvaluation();
-            //levelSummary();
+            //showEvaluation();
+            levelSummary();
         },
         error:function(data){
             

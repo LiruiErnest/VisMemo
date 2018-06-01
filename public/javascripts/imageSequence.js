@@ -4,7 +4,7 @@ function generateGamesquence(ispractice){
 	//define experiment parameter
 	var fillerCount = 914;
 	var targetCount = 228;
-	var levelCount = 1;
+	var levelCount = 5;
 	var levelImageCount = 120;
 	var totalImageCount = levelCount * levelImageCount;
 	var fillerSpacingMin = 2;
@@ -30,7 +30,7 @@ function generateGamesquence(ispractice){
 		}
 
 		//setting up vigilance repeat image
-		for(var i = 0; i < levelCount; i++){
+		for(var i = 0; i < 1; i++){
 			for(var j = 0; j < 30; j++){
 				//if this image is a filler image
 				if(imageInfoArr[i][j][0] <= fillerCount - 1){

@@ -164,7 +164,7 @@ left: 0%;width: 100%; position: relative; display: none}
 
 .visImage{display: none;max-width: 45rem;max-height: 45rem; }
 
-.feedbackImage{display: none; width: 1rem;height: 1rem; }
+.feedbackImage{display: none; width: 1.5rem;height: 1.5rem; }
 
 /*--------------------------------------------evaluation-box------------------------------------------*/
 .ordermemo .main-box .content-box .evaluate-box{position: relative; line-height: 1.5rem; 
