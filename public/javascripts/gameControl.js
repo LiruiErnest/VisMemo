@@ -276,13 +276,14 @@ function startGame() {
     });
     //check user's status, level
     var level = globalWorkerObj.finishLevel;
-    //obtain the image sequence
-    if(globalWorkerObj.isPracticeMode == 1){
-        globalSequence = generateGamesquence(1);
-    }
-    else{
-        globalSequence = generateGamesquence();
-    }
+    // //obtain the image sequence
+    // if(globalWorkerObj.isPracticeMode == 1){
+    //     globalSequence = generateGamesquence(1);
+    // }
+    // else{
+    //     globalSequence = generateGamesquence();
+    // }
+    globalSequence = generateGamesquence();
     //get url from database and begin the game
     getImageUrl(globalSequence[globalWorkerObj.finishLevel]);
 }

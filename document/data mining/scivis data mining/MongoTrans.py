@@ -23,5 +23,5 @@ def import_content(filepath,dbname,collectionname):
     db_cm.remove()
     db_cm.insert(data_json)
 
-import_content('sonline dataset.csv','vismemodb','imagedata')
+import_content('Final online dataset.csv','vismemodb','imagedata')
 #import_content('2.csv','vismemodb','user')

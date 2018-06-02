@@ -211,6 +211,7 @@ function imageShow(){
 		}	
 		//change to feedback image
 		$(".visImage").css({'display':'none'});
+		$('.visImage').attr("src","");
 		$(".feedbackImage").css({'display':'block'});
 		if(index == imageCount){
 			$('.feedbackImage').attr("src",'');  //delete the visImage
