@@ -66,10 +66,8 @@ function showEvaluation(data) {
     // //bind actions
     $('#eva-next').unbind('click').click(function() {});
     $("#eva-next").click(function() {
-
-        getSubResult();
-
         if(isSelected()){
+            getSubResult();
             updateSubComment(globalWorkerObj.WorkerID,globalSubResult);
         }
         else{
