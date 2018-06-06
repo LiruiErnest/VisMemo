@@ -137,9 +137,9 @@ function resetOption(){
 
 //initialize slider
 function resetSlide(r) {
-	r.val("1");
+	r.val("4");
     r.css({
-        'background-image': '-webkit-linear-gradient(left ,#16a085 0%,#16a085 ' + 0 + '%,#fff ' + 0 + '%, #fff 100%)'
+        'background-image': '-webkit-linear-gradient(left ,#16a085 0%,#16a085 ' + 50 + '%,#fff ' + 50 + '%, #fff 100%)'
     });
 }
 

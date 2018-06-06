@@ -206,7 +206,7 @@ input[type="range"]{
   border-radius:5px;
   width:25rem;
   height:0.5rem;
-  background-image:-webkit-linear-gradient(left ,#16a085 0%,#16a085 0%,#fff 0%, #fff 100%);
+  background-image:-webkit-linear-gradient(left ,#16a085 0%,#16a085 50%,#fff 50%, #fff 100%);
   box-shadow:inset #7f8c8d 0 0 5px;
   outline : none;
   transition:.1s;
