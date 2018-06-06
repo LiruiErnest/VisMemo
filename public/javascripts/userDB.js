@@ -239,6 +239,25 @@ function updateUserWarning(workerID,warningTimes){
     }); 
 }
 
+//update a worker's warningTimes
+function updateUserBlock(workerID){
+    var dataJson = {
+        'WorkerID':workerID
+    }
+    //console.log(dataJson);
+    $.ajax({
+        type:"PUT",
+        data:dataJson,
+        url:'users/updateworkerblock',
+        dataType: 'JSON',
+        success:function(data){
+            levelSummary();
+        },
+        error:function(data){
+            
+        }
+    }); 
+}
 
 
 

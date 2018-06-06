@@ -90,6 +90,27 @@ router.put('/updateworkerwarning',function(req,res){
     });
 });
 
+//update the state of user, and block user
+router.put('/updateworkerblock',function(req,res){
+    var db = req.db;
+    var collection = db.get('user');
+    
+    var WorkerID = req.body.WorkerID;
+    // create the object literal
+
+    var setArgs = {};
+    setArgs['isBlocked'] = 1;
+    setArgs['finishLevel'] = 5;
+   
+    var condition = {$set:setArgs};
+
+    collection.findOneAndUpdate({'WorkerID':WorkerID},condition, function(err, result){
+        res.send(
+            (err === null) ? { msg: result} : { msg: err }
+        );
+    });
+});
+
 //update the Practice Times of a worker
 router.put('/updateworkerpractice',function(req,res){
     var db = req.db;

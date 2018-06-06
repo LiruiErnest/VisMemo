@@ -7,9 +7,9 @@ function getImageUrl(imageSequence){
 	var imageIDArr = "";
 	for(var i = 0;i < imageSequence.length;i++){
 		if(i == imageSequence.length-1){
-			imageIDArr = imageIDArr + 'I' + imageSequence[i][0].toString();
+			imageIDArr = imageIDArr + 'I' + imageSequence[i].toString();
 		}else{
-			imageIDArr = imageIDArr + 'I' + imageSequence[i][0].toString() + ',';
+			imageIDArr = imageIDArr + 'I' + imageSequence[i].toString() + ',';
 		}	
 	}
 	
@@ -22,7 +22,7 @@ function getImageUrl(imageSequence){
             url: '/images/getImageUrl',
             dataType: 'JSON'
         }).done(function( data ) {
-        	buildUrlObj(data.msg);
+        	showEvaluation(data.msg);
         });
 
 }

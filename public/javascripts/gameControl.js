@@ -8,6 +8,12 @@ var globalRepeatIndex;
 var globalRepeatCount;
 var globalRepeatSequence = [];
 var globalSubResult = [];
+
+var evaluateSequence = [];
+var evaluateIndex;
+var evaluateCount;
+var evaluateUrl;
+
 $(document).ready(function() {
     initalSlide();
     $('.submitworkID-button').unbind('click').click(function() {});
@@ -20,13 +26,13 @@ $(document).ready(function() {
 
 function initalSlide() {
     var fa = $('#familiarity');
-    var co = $('#colorful');
+    var int = $('#interesting');   
     var ha = $('#happy');
     var la = $('#layout');
-    var int = $('#interesting');
+    var st = $('#style');
     // var in = $('#interesting')
     changeSlide(fa);
-    changeSlide(co);
+    changeSlide(st);
     changeSlide(ha);
     changeSlide(la);
     changeSlide(int);
@@ -117,7 +123,7 @@ function enterStartpage(data) {
     $(".game-instructions").css({
         'display': 'block'
     });
-    $(".game-instructions").text("Thanks for taking part in our online memory game. Please click the \"Practice\" button to begin.");
+    $(".game-instructions").text("Thanks for taking part in our survey. Please click the \"Start\" button to begin.");
     globalWorkerObj.WorkerID = data.WorkerID;
     globalWorkerObj.finishLevel = data.finishLevel;
     globalWorkerObj.isBlocked = data.isBlocked;
@@ -136,14 +142,18 @@ function enterStartpage(data) {
         $('.game-instructions').css({
             'text-align': 'center'
         });
-        $(".game-instructions").text("Welcome back! Please take the practice test to continue your game!");
+        $(".game-instructions").text("Thanks for taking part in our survey. Please click the \"Start\" button to begin.");
     }
     $('#start-practice').unbind('click').click(function() {});
     $("#start-practice").click(function() {
         //test pass the practice
-        globalWorkerObj.isPracticeMode = 1;
+        globalWorkerObj.isPracticeMode = 0;
         //globalWorkerObj.isPracticeMode = 1;
-        startGame();
+        //startGame();
+        //getImageUrl
+        getTagImage();
+
+        //showEvaluation();
     });
     // $('#skip-practice').unbind('click').click(function() {});
     // $("#skip-practice").click(function(){
@@ -324,13 +334,15 @@ function levelSummary() {
     $(".summary-box").css({
         'display': 'block'
     });
-    plotReward();
-    plotScore();
+    //plotReward();
+    //plotScore();
     countTime = 300;
     TimeCount();
-    $('#summary-nowlevel').text(parseInt(globalWorkerObj.finishLevel));
-    $("#levelcode").text(globalWorkerObj.code);
-    jumpNextLevel();
+    $("#levelcode").text('11a1c01e17df259b023d2e6333ea728f7');
+
+    //$('#summary-nowlevel').text(parseInt(globalWorkerObj.finishLevel));
+    //$("#levelcode").text(globalWorkerObj.code);
+    //jumpNextLevel();
 }
 //jump to next level
 function jumpNextLevel() {
@@ -515,6 +527,6 @@ function showBlock(blockParam) {
         });
         $('.feedbackImage').attr("src", '');
         $('.visImage').attr("src", '');
-        $(".block-instructions").text("Dear participant, thank you for your participation, you have completed all the levels, hope to see you in our other games in the future!");
+        $(".block-instructions").text("Dear participant, thank you for your participation, you have finished our survey, hope to see you in our other tasks in the future!");
     } else {}
 }
