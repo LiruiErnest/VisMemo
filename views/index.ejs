@@ -285,34 +285,71 @@
                 <img class="eva-img" src="">
             </div>
 
+            <p id="eva-warning"></p>
+
             <div class="eva-item">
                 <span class="boldspan">Are the objects in the visualization look familiar to you?</span>               
                 <br>
-                <input id="familiarity" class="rangeSlide" type="range" min="1" max="7" value="4" />
+                <!-- <input id="familiarity" class="rangeSlide" type="range" min="1" max="7" value="4" /> -->
+                <label class="radio-inline"><input name="familiar" type="radio" value="1" /> 1</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                <label class="radio-inline"><input name="familiar" type="radio" value="2" /> 2</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                <label class="radio-inline"><input name="familiar" type="radio" value="3" /> 3</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                <label class="radio-inline"><input name="familiar" type="radio" value="4" /> 4</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                <label class="radio-inline"><input name="familiar" type="radio" value="5" /> 5</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                <label class="radio-inline"><input name="familiar" type="radio" value="6" /> 6</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                <label class="radio-inline"><input name="familiar" type="radio" value="7" /> 7</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <br>
-                <span>Disagree &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Agree</span>
+                <span>Disagree &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Agree</span>
                 <br><br>
                 <span class="boldspan">Is the visualization interesting?</span>               
                 <br>
-                <input id="interesting" class="rangeSlide" type="range" min="1" max="7" value="4" />
+                <!-- <input id="interesting" class="rangeSlide" type="range" min="1" max="7" value="4" /> -->
+                <label class="radio-inline"><input name="interesting" type="radio" value="1" /> 1</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                <label class="radio-inline"><input name="interesting" type="radio" value="2" /> 2</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                <label class="radio-inline"><input name="interesting" type="radio" value="3" /> 3</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                <label class="radio-inline"><input name="interesting" type="radio" value="4" /> 4</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                <label class="radio-inline"><input name="interesting" type="radio" value="5" /> 5</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                <label class="radio-inline"><input name="interesting" type="radio" value="6" /> 6</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                <label class="radio-inline"><input name="interesting" type="radio" value="7" /> 7</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <br>
-                <span>Disagree &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Agree</span>
+                <span>Disagree &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Agree</span>
                 <br><br>
                 <span class="boldspan">How happy does this visualization make you?</span>               
                 <br>
-                <input id="happy" class="rangeSlide" type="range" min="1" max="7" value="4" />
+                <label class="radio-inline"><input name="happy" type="radio" value="1" /> 1</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                <label class="radio-inline"><input name="happy" type="radio" value="2" /> 2</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                <label class="radio-inline"><input name="happy" type="radio" value="3" /> 3</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                <label class="radio-inline"><input name="happy" type="radio" value="4" /> 4</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                <label class="radio-inline"><input name="happy" type="radio" value="5" /> 5</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                <label class="radio-inline"><input name="happy" type="radio" value="6" /> 6</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                <label class="radio-inline"><input name="happy" type="radio" value="7" /> 7</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <!-- <input id="happy" class="rangeSlide" type="range" min="1" max="7" value="4" /> -->
                 <br>
                 <span>Very unhappy&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Very Happy</span>
                 <br><br>
                 <span class="boldspan">This is an visualization of:</span>               
                 <br>
-                <input id="layout" class="rangeSlide" type="range" min="1" max="7" value="4" />
+                <!-- <input id="layout" class="rangeSlide" type="range" min="1" max="7" value="4" /> -->
+                <label class="radio-inline"><input name="layout" type="radio" value="1" /> 1</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                <label class="radio-inline"><input name="layout" type="radio" value="2" /> 2</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                <label class="radio-inline"><input name="layout" type="radio" value="3" /> 3</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                <label class="radio-inline"><input name="layout" type="radio" value="4" /> 4</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                <label class="radio-inline"><input name="layout" type="radio" value="5" /> 5</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                <label class="radio-inline"><input name="layout" type="radio" value="6" /> 6</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                <label class="radio-inline"><input name="layout" type="radio" value="7" /> 7</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <br>
                 <span>Neat space &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cluttered space</span>
                 <br><br>
                 <span class="boldspan">The style of this visualization is:</span>               
                 <br>
-                <input id="style" class="rangeSlide" type="range" min="1" max="7" value="4" />
+                <!-- <input id="style" class="rangeSlide" type="range" min="1" max="7" value="4" /> -->
+                <label class="radio-inline"><input name="style" type="radio" value="1" /> 1</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                <label class="radio-inline"><input name="style" type="radio" value="2" /> 2</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                <label class="radio-inline"><input name="style" type="radio" value="3" /> 3</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                <label class="radio-inline"><input name="style" type="radio" value="4" /> 4</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                <label class="radio-inline"><input name="style" type="radio" value="5" /> 5</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                <label class="radio-inline"><input name="style" type="radio" value="6" /> 6</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                <label class="radio-inline"><input name="style" type="radio" value="7" /> 7</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <br>
                 <span>Abstract &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Realism</span>
                 <br><br>

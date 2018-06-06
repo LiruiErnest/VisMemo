@@ -69,8 +69,12 @@ function showEvaluation(data) {
 
         getSubResult();
 
-        updateSubComment(globalWorkerObj.WorkerID,globalSubResult);
+        if(isSelected()){
+            updateSubComment(globalWorkerObj.WorkerID,globalSubResult);
+        }
+        else{
 
+        }
         //store data
         // showNextEvaluation();
     })
@@ -81,11 +85,12 @@ function showEvaluation(data) {
 
 //get current subjective result
 function getSubResult(){
-	var fa = $('#familiarity').val();
-    var co = $('#style').val();
-    var ha = $('#happy').val();
-    var la = $('#layout').val();
-    var int = $('#interesting').val();
+
+	var fa = $('input[name=familiar]:checked').val();
+    var co = $('input[name=style]:checked').val();
+    var ha = $('input[name=happy]:checked').val();
+    var la = $('input[name=layout]:checked').val();
+    var int = $('input[name=interesting]:checked').val();
 
     var currentImage = evaluateSequence[evaluateIndex];
     var currentResult = currentImage + ',' + fa + ',' + co + ',' + ha + ',' + la + ',' + int + ';'; 
@@ -122,17 +127,37 @@ function showCode(){
     $('.header-instructions').text("Thanks");
 }
 
+function isSelected(){
+    if($('input[name=happy]').is(':checked') != false &&
+       $('input[name=familiar]').is(':checked') != false &&
+       $('input[name=style]').is(':checked') != false &&
+       $('input[name=layout]').is(':checked') != false &&
+       $('input[name=interesting]').is(':checked') != false ){
+        return true;
+    }
+    else{
+        $('#eva-warning').text("Please fill in all fields!");
+        return false;
+    }
+}
+
 function resetOption(){
-	var fa = $('#familiarity');
-    var co = $('#style');
-    var ha = $('#happy');
-    var la = $('#layout');
-    var int = $('#interesting');
-    resetSlide(fa);
-    resetSlide(co);
-    resetSlide(ha);
-    resetSlide(la);
-    resetSlide(int);
+    $('input[name=happy]').prop('checked',false);
+    $('input[name=familiar]').prop('checked',false);
+    $('input[name=style]').prop('checked',false);
+    $('input[name=layout]').prop('checked',false);
+    $('input[name=interesting]').prop('checked',false);
+    $('#eva-warning').text("");
+	// var fa = $('#familiarity');
+ //    var co = $('#style');
+ //    var ha = $('#happy');
+ //    var la = $('#layout');
+ //    var int = $('#interesting');
+ //    resetSlide(fa);
+ //    resetSlide(co);
+ //    resetSlide(ha);
+ //    resetSlide(la);
+ //    resetSlide(int);
 }
 
 //initialize slider

@@ -226,6 +226,12 @@ input[type="range"]::-webkit-slider-thumb:active{
   height:1.2rem;
 }
 
+#eva-warning{
+	color: red;
+	margin: auto;
+	/*text-align: center;*/
+}
+
 
 
 

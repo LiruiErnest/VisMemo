@@ -15,7 +15,7 @@ var evaluateCount;
 var evaluateUrl;
 
 $(document).ready(function() {
-    initalSlide();
+    // initalSlide();
     $('.submitworkID-button').unbind('click').click(function() {});
     $(".submitworkID-button").click(function() {
         //====================test
